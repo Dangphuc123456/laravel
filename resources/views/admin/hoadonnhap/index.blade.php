@@ -16,7 +16,7 @@
               <thead class="thead-light">
                 <tr>
                   <th scope="col">TT</th>
-                  <th scope="col">mã nhà cung cấp</th>
+                  <th scope="col">Mã nhà cung cấp</th>
                   <th scope="col">Tổng tiền</th>
                   <th scope="col">Chi tiết</th>
                   <th scope="col">Sửa</th>
@@ -25,11 +25,11 @@
               </thead>
               <tbody>
                 @php $i = 1; @endphp
-                @foreach ($hoadonhap as $sp)
+                @foreach ($hoadonnhap as $sp)
                 <tr>
                     <td>{{$i++}}</td>
                     <td>{{$sp-> id}}</td>
-                    <td>{{$sp-> TongSoTien}}</td>
+                    <td>{{$sp-> TongTien}}</td>
                     <td><a href="{{ route('admin.hoadonnhap.detail',$sp->idNhap) }}" class="btn btn-primary" style="color:black;">Chi tiết</a></td>
                     <td><a href="{{ route('admin.hoadonnhap.edit', $sp->idNhap) }}" class="btn btn-warning" style="color: black;">Edit</a> </td> 
                     <td><a href="{{route('hoadonnhap.destroy',$sp->idNhap)}}" class="btn btn-danger" style="color: black;" onclick="return confirm('Bạn có muốn xóa không?')">Xoá</a></td>                                                                

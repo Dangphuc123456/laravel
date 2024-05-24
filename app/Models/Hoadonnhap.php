@@ -7,19 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hoadonnhap extends Model
 {
-    use HasFactory;
-    protected $table='hoadonandchitietnhap';
+    protected $table = 'hoadonandchitietnhap';
     protected $primaryKey = 'idNhap';
-    protected $fillable=[
-    'idNhap',
-    'id',
-    'TongSoTien',
-    'SoLuong',
-    'DonGia',
-    'ThanhTien',
-    'ProID',
-    'ProName',
-    'updated_at',
-    'created_at'
+    protected $fillable = [
+        'idNhap',
+        'id',
+        'SoLuong',
+        'DonGia',
+        'TongTien',
+        'ProName',
+        'updated_at',
+        'created_at'
     ];
 }

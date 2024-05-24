@@ -26,7 +26,7 @@
                 </tr>
                 <tr>
                     <td>TongSoTien</td>
-                    <td><input type='text' name='TongSoTien' id='TongSoTien' value='{{$hoadonnhap->TongSoTien}}'></td>                  
+                    <td><input type='text' name='TongSoTien' id='TongSoTien' value='{{$hoadonnhap->TongTien}}'></td>                  
                 </tr>
                 <tr>
                     <td>SoLuong</td>
@@ -38,17 +38,10 @@
                     <td><input type='text' name='DonGia' id='DonGia' value='{{$hoadonnhap->DonGia}}'></td>                  
                 </tr>
                 <tr>
-                    <td>ThanhTien</td>
-                    <td><input type='text' name='ThanhTien' id='ThanhTien' value='{{$hoadonnhap->ThanhTien}}'></td>                  
-                </tr>
-                <tr>
-                    <td>ProID</td>
-                    <td><input type='text' name='ProID' id='ProID' value='{{$hoadonnhap->ProID}}'></td>                  
-                </tr>
-                <tr>
                     <td>ProName</td>
                     <td><input type='text' name='ProName' id='ProName' value='{{$hoadonnhap->ProName}}'></td>                  
                 </tr>
+                
             <thead>
             </table>
             <div class="form-actions">

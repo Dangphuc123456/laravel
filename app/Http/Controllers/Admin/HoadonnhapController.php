@@ -23,19 +23,26 @@ class HoadonnhapController extends Controller
     {
         $data = $request->validate([
             'id' => 'required|string|max:200',
+            'ProName' => 'required|string|max:255',
+            'SoLuong' => 'required|integer|min:1',
+            'DonGia' => 'required|numeric|min:0',
             'Diachi' => 'required|string|max:200',
             'Sdt' => 'required|string|max:50',
             'Email' => 'required|email|max:255',
             'Ghichu' => 'nullable|string',
         ]);
 
+        // Calculate TongTien
+        $data['TongTien'] = $data['SoLuong'] * $data['DonGia'];
         $data['created_at'] = now();
         $data['updated_at'] = now();
 
         Hoadonnhap::create($data);
 
-        return redirect()->route('admin.hoadonnhap.index')->with('success', 'Thêm thành công danh mục!');
+        return redirect()->route('admin.hoadonnhap.index')->with('success', 'Thêm thành công sản phẩm nhập!');
     }
+
+
     public function show($id)
     {
         $hoadonnhap = Hoadonnhap::where('id', $id)->first();
@@ -46,16 +53,15 @@ class HoadonnhapController extends Controller
         }
         $idNhap =$hoadonnhap->idNhap;
         $id=$hoadonnhap->id;
-        $TongSoTien=$hoadonnhap->TongSoTien;
+        $TongTien=$hoadonnhap->TongTien;
         $SoLuong=$hoadonnhap->SoLuong;
         $DonGia=$hoadonnhap->DonGia;
-        $ThanhTien=$hoadonnhap->ThanhTien;
         $ProID=$hoadonnhap->ProID;
         $ProName=$hoadonnhap->ProName;
         $created_at=$hoadonnhap->created_at;
         $updated_at =$hoadonnhap->updated_at;
 
-        return view('admin.hoadonnhap.detail', compact('hoadonnhap','idNhap','id','TongSoTien', 'SoLuong', 'DonGia', 'ThanhTien', 'ProID', 'ProName', 'updated_at', 'created_at'));
+        return view('admin.hoadonnhap.detail', compact('hoadonnhap', 'idNhap', 'id', 'SoLuong', 'DonGia', 'TongTien', 'ProName', 'updated_at', 'created_at'));
     }
 
     public function edit($id)

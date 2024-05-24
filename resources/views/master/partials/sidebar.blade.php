@@ -147,7 +147,7 @@
     </a>
     <div id="collapseInvoice" class="collapse" aria-labelledby="headingInvoice" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-            <a class="collapse-item" href="">Danh sách hóa đơn nhập</a>
+            <a class="collapse-item" href="{{ route('admin.hoadonnhap.index') }}">Danh sách hóa đơn nhập</a>
         </div>
     </div>
 </li>
