@@ -1,0 +1,357 @@
+/* -------------Header------------------ */
+.main_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    border: 3px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    background-color: #1c1b1b;
+}
+
+.logo img {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.diachi,
+.giohang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: aliceblue;
+}
+
+.diachi svg,
+.giohang svg {
+    width: 20px;
+    height: 20px;
+    color: red;
+    margin-left: 10px;
+}
+
+.giohang button {
+    cursor: pointer;
+    width: 120px;
+    height:40px;
+    margin-right: 40px;
+    background-color: yellow;
+    font-weight: bold;
+    border-radius: 68px;
+} 
+/* -------------menu------------------ */
+.main_menu {
+    background-color: rgba(128, 255, 0, 0.716);
+    height: 59px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  .main_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 280px;
+  }
+
+  .main_menu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+
+  .main_menu li:last-child {
+    margin-right: 0;
+  }
+
+  .main_menu li a {
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .main_menu li a:hover {
+    background-color: #ccc;
+  }
+  /* -------------tim kiem------------------ */
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-left: 150px;
+  }
+
+  .search-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 50px;
+  }
+   /* -------------slide------------------ */
+   .slideshow-container {
+    position: relative;
+    width: 700px;
+    height: 3000px; /* Điều chỉnh chiều cao slideshow */
+    overflow: hidden;
+    }
+
+    .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    }
+
+    .slide.active {
+    opacity: 1;
+    }
+
+    .container.slide img {
+    width: 100%;
+    height: 1000px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    }
+    .container {
+    display: flex;
+    flex-direction: column;
+    height: 750px;
+    }
+
+    .slideshow-container {
+    flex: 1;
+    }
+    .container{
+      border: 1px solid transparent;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    /* -------------banner------------------ */
+    .banner {
+        flex: 1;
+        border: 1px solid transparent;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+      }
+      .banner h1 {
+        background-color: #0088ff;
+      }
+      .slideshow-container {
+        position: relative;
+        width: 100%;
+        height: auto;
+        overflow: hidden;
+        }
+
+        .slide-group {
+        display: flex;
+        width: 100%;
+        height: auto;
+        }
+
+        .slide {
+        flex: 0 0 20%;
+        max-width: 100%;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+        
+        }
+        .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        }
+
+        .slide.active {
+        opacity: 1;
+        }
+
+/*---tin---*/
+
+        .contai1 {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .contai1 img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .contai1 h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .contai1 p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+
+/* -------------footer------------------ */          
+.restaurant-footer {
+    background-color: #CCCC99;
+    color: #1c1b1b;
+    padding: 50px 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section.about .contact span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.about .social-media a {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .footer-section.about .social-media a:hover {
+    color: #f39c12;
+  }
+  
+  .footer-section.links ul {
+    list-style: none;
+  }
+  
+  .footer-section.links ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.links ul li a {
+    color: #1c1b1b;
+    text-decoration: none;
+  }
+  
+  .footer-section.links ul li a:hover {
+    color: #f39c12;
+  }
+  
+  .contact-form .text-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-form textarea {
+    height: 100px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #e67e22;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    background-color: white;
+  }
+  
+  /* -------------scroll------------------ */
+            #scroll-to-top-btn {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              z-index: 9999;
+              display: none;
+              padding: 10px;
+              background-color: #555;
+              color: #fff;
+              border: none;
+              cursor: pointer;
+              border-radius: 99px;
+              background-color:black;
+            }
+    
+            #scroll-to-top-btn:hover {
+              background-color: lightgreen;
+            }
+            #scroll-to-top-btn svg{
+                width: 30px;
+                height: 20px;
+            }
+  
+            /* Ẩn dropdown-menu mặc định */
+          .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+          }
+  
+          /* Hiển thị dropdown-menu khi có class "show" */
+          .dropdown-menu.show {
+            display: block;
+          }
+
+         /* Ẩn dropdown-menu mặc định */
+         .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
+          }
+  
+          /* Hiển thị dropdown-menu khi có class "show" */
+          .dropdown-menu.show {
+            display: block;
+          }
+  
