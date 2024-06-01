@@ -92,6 +92,10 @@
                     <td>{{$sold}}</td>            
                 </tr>
                 <tr>
+                    <td>quantity:</td>      
+                    <td>{{$quantity}}</td>            
+                </tr>
+                <tr>
                     <td>updated_at:</td>      
                     <td>{{$updated_at}}</td>            
                 </tr>         

@@ -54,7 +54,6 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Ảnh</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Số lượng</th>
                                 <th>Giá</th>
@@ -98,11 +97,6 @@
     @include('User.partials.footer')
     @include('User.partials.scroll')
     <script src="{{ asset('js/ThanhToan.js') }}"></script>     
-    <script>
-    // Đợi 3 phút trước khi chuyển trang
-    setTimeout(function() {
-        window.location.href = "{{ route('thongtin') }}";
-    }, 180000); // 180000 miliseconds = 3 minutes
-</script>
+    
 </body>
 </html>

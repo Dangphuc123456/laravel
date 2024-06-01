@@ -19,6 +19,7 @@ use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\User\OrdersController ;
 
 /*
 |--------------------------------------------------------------------------
@@ -158,8 +159,11 @@ Route::prefix('admin')->group(function () {
     Route::get('/chitietTinTuc/{id}', [HomeController::class, 'detailtinTuc'])->name('detailtinTuc');
     Route::get('/contact', [HomeController::class, 'showContactForm'])->name('contact');
     Route::post('/contact', [HomeController::class, 'storeContact'])->name('contact.store');
-
-
+    Route::get('/thongtin', [HomeController::class, 'thongtin'])->name('thongtin');
+ 
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/orders', [OrdersController::class, 'index'])->name('orders.index');
+    });
 
     // Route cho đăng nhập
     Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
@@ -181,4 +185,5 @@ Route::prefix('admin')->group(function () {
     Route::get('/thanh-toan', [CartController::class,'thanhToan'])->name('thanhToan');
     Route::get('/thongtin', [CartController::class, 'thongtin'])->name('thongtin');
     Route::post('/store', [CartController::class, 'store'])->name('store');
-    Route::post('/cancel-order/{id}', [CartController::class, 'cancelOrder'])->name('cancelOrder');
+    Route::get('/confirmation/{OrdID}', [CartController::class, 'showConfirmation'])->name('confirmation');
+

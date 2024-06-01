@@ -27,7 +27,7 @@
       </div>
     <!-- Script slideshow -->    
     <div class="banner">
-        <h1 style="color: white;margin-left: 10px;margin-right: 10px;">Món Chay </h1>
+    <h1 style="color: white; background-color: #0088FF;"><p style="margin-left: 15px;">Món Khai Vị</p></h1>
         <div class="slideshow-container">
             <div class="slide-group">
                 @php $count = 0; @endphp <!-- Khởi tạo biến đếm -->
@@ -43,7 +43,7 @@
                                     @endif
                                 </a>
                                 <div class="sale-off">
-                                    <span class="discount-percentage">3%</span>
+                                    <span class="discount-percentage"></span>
                                 </div>
                                 <div class="product-info">
                                     <h3 >{{$item->ProName}}</h3>
@@ -77,7 +77,7 @@
     <style>
         .product {
             width: 100%;
-            height: 900px;
+            height: 850px;
             border: 1px solid transparent;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
         }
@@ -95,12 +95,12 @@
     </style>
 
     <div class="product">
-        <h1 style="color: white; background-color: #0088FF; margin-left: 10px; margin-right: 10px;">Món Mặn</h1>
+        <h1 style="color: white; background-color: #0088FF;"><p style="margin-left: 15px;">Món Chính</p></h1>
         <div class="slide-group">
             <div class="product-container">
                 @php $count = 0; @endphp <!-- Khởi tạo biến đếm -->
                 @foreach($sp as $item)
-                    @if($loop->iteration > 10 && $loop->iteration <= 20 && $item)
+                    @if($loop->iteration > 15 && $loop->iteration <= 25 && $item)
                         <div class="banner-sp">
                             <div class="thumbnail">
                                 <a href="{{ route('detail',$item->ProID) }}">
@@ -111,7 +111,7 @@
                                     @endif
                                 </a>
                                 <div class="sale-off">
-                                    <span class="discount-percentage">3%</span>
+                                    <span class="discount-percentage"></span>
                                 </div>
                                 <div class="product-info">
                                     <h3>{{$item->ProName}}</h3>

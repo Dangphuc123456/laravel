@@ -1,3 +1,7 @@
+body{
+  border: 3px solid transparent;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
 /* -------------Header------------------ */
 .main_header {
     display: flex;
@@ -144,6 +148,34 @@
     .container{
       border: 1px solid transparent;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    /* menu-hor */
+    .menu-horizontal {
+      width: 100%;
+      background-color: #f2f2f2;
+      border: 1px solid transparent;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .menu-horizontal ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center; /* Căn giữa các mục */
+    }
+    
+    .menu-horizontal li {
+      padding: 10px 20px;
+    }
+    
+    .menu-horizontal a {
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .menu-horizontal a:hover {
+      color: #0f0; /* Màu xanh lá cây */
     }
  /* -------------banner------------------ */
  .banner {

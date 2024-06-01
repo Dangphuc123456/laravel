@@ -207,6 +207,7 @@ class CartController extends Controller
                 // Get current datetime
                 $currentDateTime = Carbon::now()->toDateTimeString();
 
+               
                 // Save cart items to Cart table
                 $cartItems = $request->input('products', []);
                 foreach ($cartItems as $id => $details) {
@@ -218,7 +219,7 @@ class CartController extends Controller
                         'Status' => 1, // Or 0 depending on the order status
                         'created_at' => $currentDateTime,
                         'updated_at' => $currentDateTime,
-                        
+                        'ProName' => $details['name'], // Assuming product name needs to be saved
                     ];
                     Cart::create($cartData);
                 }
@@ -260,30 +261,18 @@ class CartController extends Controller
                 return view('User.thongtin', compact('customer', 'cart', 'totalPrice', 'order'));
                 // Redirect or return response as needed
             } else {
-               
+                
             }
         }
-        public function thongtin(Request $request)
+        public function thongtin( $OrdID)
         {
-            $latestOrder = OrderModel::latest()->first();
-        $customer = Customer::where('CusID', $latestOrder->CusID)->first();
-        
-        return view('User.thongtin', compact('latestOrder', 'customer'));
+            return view('User.thongtin',);
         }
-        public function cancelOrder($id)
+
+        public function showConfirmation($OrdID)
         {
-            // Tìm đơn hàng theo ID
-            $order = OrderModel::find($id);
-    
-            // Kiểm tra xem đơn hàng có tồn tại không
-            if (!$order) {
-                return response()->json(['message' => 'Đơn hàng không tồn tại.'], 404);
-            }
-    
-            // Xóa đơn hàng
-            $order->delete();
-    
-            // Trả về phản hồi cho client
-            return response()->json(['message' => 'Đã hủy đơn hàng thành công.'], 200);
+            $order = OrderModel::findOrFail($OrdID);
+            // Hiển thị view với thông tin đơn hàng và trạng thái xác nhận
+            return view('User.thongtin', compact('order'));
         }
 }

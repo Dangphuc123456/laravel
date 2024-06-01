@@ -17,8 +17,15 @@
     <!-- phần slideshow -->
     @include('User.partials.slide')
     <!-- Script slideshow -->   
+    <div class="menu-horizontal">
+        <ul>
+            @foreach($lsp as $lsp)
+            <li><a href="{{ route('danhMuc',['CatID'=>$lsp->CatID])}}">{{$lsp->CatName}}</a></li>
+            @endforeach
+        </ul>
+    </div>
     <div class="banner">
-        <h1 style="color: black;margin-left: 10px;margin-right: 10px;">Kết quả</h1>
+        <h2 style="color: black;margin-left: 10px;margin-right: 10px;">Thông tin sản phẩm danh mục.</>
        <div class="slideshow-container">
             <div class="slide-group">
                 @foreach($product as $item)
@@ -32,7 +39,7 @@
                                     @endif
                                 </a>
                                 <div class="sale-off">
-                                    <span class="discount-percentage">3%</span>
+                                    <span class="discount-percentage"></span>
                                 </div>
                                 <div class="product-info">
                                     <h3 >{{$item->ProName}}</h3>

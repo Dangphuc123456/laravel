@@ -10,10 +10,15 @@
             <div class="dropdown-menu" id="dropdownMenu">
                 <form id="logoutForm" action="{{ route('logout') }}" method="POST" style="display: inline;">
                 @csrf
-                <button type="submit" style="background: none; border: none; padding: 0; color: inherit; cursor: pointer; text-decoration: none;">
+                <button type="submit" style="background: none; border: none; padding: 0; color: inherit; cursor: pointer; text-decoration: none; margin-left: 30px;">
                     Logout
                 </button>
-            </form>
+            </form><br><hr>
+            <a href="{{ route('orders.index') }}">
+            <button type="submit" style="background: none; border: none; padding: 0; color: inherit; cursor: pointer; text-decoration: none;">
+                  Đơn mua<p style="font-size: 10px;color:gray">Xem lịch sử mua hàng</p>
+                </button>
+            </a>
             </div>
         </div>
       <div class="diachi">
@@ -42,3 +47,14 @@
       </div>
   </div>
   
+
+
+
+
+
+
+
+
+
+
+

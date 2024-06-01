@@ -12,4 +12,9 @@ class Customer extends Model
     protected $primaryKey = 'CusID';    // khóa chính
     // Các cột trong bảng
     protected $fillable = ['CusName', 'CusEmail', 'CusAddress', 'CusPhone', 'Note', 'Payment'];
+    public function order()
+    {
+        return $this->hasMany(OrderModel::class, 'CusID', 'CusID');
+    }
+    
 }

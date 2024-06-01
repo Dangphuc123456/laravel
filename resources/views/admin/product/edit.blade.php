@@ -83,6 +83,10 @@
                     <td><input type='text' name='sold' id='sold' value='{{$product->sold}}'></td>                  
                 </tr>
                 <tr>
+                    <td>quantity</td>
+                    <td><input type='text' name='quantity' id='quantity' value='{{$product->quantity}}'></td>                  
+                </tr>
+                <tr>
                     <td>ProDescription</td>
                     <td>
                         <textarea class="form-control" name='ProDescription' id='ProDescription' cols="30" rows="10">

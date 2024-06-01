@@ -17,6 +17,15 @@
     @include('User.partials.slide')
 
     <!-- Cart Content -->
+    <div class="ttmuahang" >
+        <i class="fa-brands fa-bitcoin" style="color: white;background: rgb(252, 155, 51);padding:px;"></i>
+        <button class="blink"><a href="{{URL::to('/SanPham')}}" class="blink" >
+        <svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none"/>
+            <path fill="currentColor" d="M8 4v4H4l8 8 8-8h-4V4z"/>
+        </svg>
+        <h4>Tiếp tục mua hàng</h4></a></button>
+    </div>
     <div class="cart-container">
         <h1 style="color: white; background-color: #0088FF; text-align: center;">Giỏ hàng của bạn</h1>
         
@@ -63,7 +72,7 @@
                 <p id="cart-total">{{ number_format($total) }} VND</p>
             </div>
         @else
-            <p>Giỏ hàng của bạn đang trống.</p>
+            <h4 style="text-align: center;">Giỏ hàng của bạn đang trống.</h4>
         @endif
     </div>
 

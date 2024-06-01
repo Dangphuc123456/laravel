@@ -43,9 +43,9 @@ class HoadonnhapController extends Controller
     }
 
 
-    public function show($id)
+    public function show($idNhap)
     {
-        $hoadonnhap = Hoadonnhap::where('id', $id)->first();
+        $hoadonnhap = Hoadonnhap::where('idNhap', $idNhap)->first();
 
         if (!$hoadonnhap) {
             // Xử lý khi không tìm thấy sản phẩm với ProID tương ứng
@@ -64,35 +64,35 @@ class HoadonnhapController extends Controller
         return view('admin.hoadonnhap.detail', compact('hoadonnhap', 'idNhap', 'id', 'SoLuong', 'DonGia', 'TongTien', 'ProName', 'updated_at', 'created_at'));
     }
 
-    public function edit($id)
-    {
-        $hoadonnhap = Hoadonnhap::find($id);
-        if (!$hoadonnhap) {
-            return abort(404);
-        }
-        return view('admin.hoadonnhap.edit', compact('hoadonnhap'));
+    public function edit($idNhap)
+{
+    $hoadonnhap = Hoadonnhap::find($idNhap);
+    if (!$hoadonnhap) {
+        return abort(404);
+    }
+    return view('admin.hoadonnhap.edit', compact('hoadonnhap'));
+}
+
+public function update(Request $request, $idNhap)
+{
+    $hoadonnhap = Hoadonnhap::find($idNhap);
+    if (!$hoadonnhap) {
+        return abort(404);
     }
 
-    public function update(Request $request, $id)
-    {
-        $hoadonnhap = Hoadonnhap::find($id);
-        if (!$hoadonnhap) {
-            return abort(404);
-        }
+    $data = $request->validate([
+        'id' => 'required|integer', // Should match the data type in the DB
+        'SoLuong' => 'required|integer', // Changed to integer as per DB structure
+        'DonGia' => 'required|numeric', // Changed to numeric to match decimal type
+        'TongTien' => 'required|numeric', // Changed to numeric to match decimal type
+        'ProName' => 'required|string|max:255', // Adjusted max length to 255 as per DB
+    ]);
 
-        $data = $request->validate([
-            'tenncc' => 'required|string|max:200',
-            'Diachi' => 'required|string|max:200',
-            'Sdt' => 'required|string|max:50',
-            'Email' => 'required|email|max:255',
-            'Ghichu' => 'nullable|string',
-        ]);
+    $data['updated_at'] = now();
+    $hoadonnhap->update($data);
 
-        $data['updated_at'] = now();
-        $hoadonnhap->update($data);
-
-        return redirect()->route('admin.hoadonnhap.index')->with('success', 'Danh mục đã được cập nhật thành công.');
-    }
+    return redirect()->route('admin.hoadonnhap.index')->with('success', 'Danh mục đã được cập nhật thành công.');
+}
 
     public function destroy($id)
     {

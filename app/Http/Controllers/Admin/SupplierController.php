@@ -83,7 +83,7 @@ class SupplierController extends Controller
         $data['updated_at'] = now();
         $supplier->update($data);
 
-        return redirect()->route('admin.supplier.index')->with('success', 'Danh mục đã được cập nhật thành công.');
+        return redirect()->route('admin.supplier.index', ['id' => $id])->with('success', 'Danh mục đã được cập nhật thành công.');
     }
 
     public function destroy($id)

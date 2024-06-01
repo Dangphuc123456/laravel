@@ -30,6 +30,12 @@ class Product extends Model
         'inventory',
         'price',
         'sold',
+        'quantity',
         'updated_at' 
     ];
+    public function order()
+    {
+        return $this->belongsToMany(OrderModel::class, 'cart', 'ProID', 'OrdID')
+                    ->withPivot('Quantity', 'Price');
+    }
 }

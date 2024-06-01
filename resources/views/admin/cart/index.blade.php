@@ -15,7 +15,6 @@
                         <tr>
                             <th scope="col">STT</th>
                             <th scope="col">Mã Khách hàng</th>
-                            <th scope="col">Mã Sản phẩm</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col">Chi tiết</th>
                         </tr>
@@ -26,9 +25,7 @@
                         <tr>
                             <td>{{ $i++ }}</td>
                             <td>{{ $item->CusID }}</td>
-                            <td>{{ $item->ProID }}</td>
                             <td><input type="checkbox" {{ $item->Status ? 'checked' : '' }}></td>
-                           
                             @if($item->CusID)
                                <td><a href="{{ route('admin.cart.detail', ['CusID' => $item->CusID]) }}" class="btn btn-primary" style="color:black;">Chi tiết</a></td>
                             @else

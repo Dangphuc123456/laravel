@@ -46,8 +46,8 @@ class CartsController extends Controller
         $Status = $cart->Status;
         $created_at = $cart->created_at;
         $updated_at = $cart->updated_at;
-
-        return view('admin.cart.detail', compact('cart', 'CartID', 'CusID', 'ProID', 'Quantity', 'Price', 'Status', 'created_at', 'updated_at'));
+        $ProName = $cart->ProName;
+        return view('admin.cart.detail', compact('cart', 'CartID', 'CusID', 'ProID', 'Quantity', 'Price', 'Status', 'created_at', 'updated_at','ProName',));
     } 
     public function showCustomerCartDetail($CusID)
     {

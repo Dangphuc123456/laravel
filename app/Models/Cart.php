@@ -14,13 +14,12 @@ class Cart extends Model
         'CartID',
         'CusID',
         'ProID',
-        'image',
         'Quantity',
         'Price',
         'Status',
-        'image',
         'created_at',
-        'updated_at'
+        'updated_at',
+        'ProName'
     ];
     public function customer()
     {
@@ -31,5 +30,8 @@ class Cart extends Model
     {
         return $this->belongsTo(Product::class, 'ProID');
     }
-    
+    public function orderModel()
+    {
+        return $this->hasMany(OrderModel::class, 'ProID', 'ProID'); // Replace 'OrderModel' with the actual model name
+    }
 }

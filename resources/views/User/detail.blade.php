@@ -97,8 +97,7 @@
         
         <!--ẢNH con-->
         <div class="image-container" >
-            <img class="img" src="{{ asset('anh/' . $sp->MoreImage) }}" alt="">
-             <img class="img" src="{{ asset('anh/' . $sp->MoreImage) }}" alt=""> 
+            <img style="margin-left: 100px;" class="img" src="{{ asset('anh/' . $sp->MoreImage) }}" alt="">
           </div> 
         
           <h2 class="product-description" style="margin-top: 50px;">Mô tả sản phẩm:<p>{!! strip_tags($sp->ProDescription) !!}</p></h2>
@@ -157,5 +156,5 @@
     }
 </script>
 
-        
+
 </html>

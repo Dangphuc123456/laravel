@@ -9,6 +9,7 @@
                     <thead>
                         <tr>
                             <th scope="col">STT</th>
+                            <th scope="col">Tên sản phẩm </th>
                             <th scope="col">Mã Sản phẩm</th>
                             <th scope="col">Số lượng</th>
                             <th scope="col">Giá</th>
@@ -20,6 +21,7 @@
                         @foreach($customerCartItems as $item)
                         <tr>
                             <td>{{ $i++ }}</td>
+                            <td>{{ $item->ProName }}</td>
                             <td>{{ $item->ProID }}</td>
                             <td>{{ $item->Quantity }}</td>
                             <td>{{ $item->Price }}</td>

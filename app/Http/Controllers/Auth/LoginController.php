@@ -23,10 +23,10 @@ class LoginController extends Controller
         $user = Auth::user();
         if ($user->role === 'employee') {
             // Nếu vai trò là admin, điều hướng đến trang admin
-            return redirect()->route('admin.index')->with('success', 'Đăng nhập thành công');;
+            return redirect()->route('admin.index')->with('success', '');;
         } else {
             // Nếu vai trò không phải là admin, điều hướng đến trang chủ
-            return redirect()->intended('/')->with('success', 'Đăng nhập thành công');;
+            return redirect()->intended('/')->with('success', '');;
         }
     }
 

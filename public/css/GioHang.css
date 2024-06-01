@@ -1,7 +1,9 @@
 body{
-  border: 1px solid rgb(237, 235, 235);
+  border: 3px solid transparent;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   
 }
+
 /* ---------------header-------------------- */
 .main_header {
     display: flex;
@@ -187,6 +189,46 @@ body{
               height: 20px;
           }
 /*---giỏ hàng---*/
+.blink {
+  animation: blinker 2.5s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+      opacity: 0;
+  }
+}
+#info-gioHang {
+  background-color: #f9f9f9;
+  padding: 0px;
+  border-radius: 5px;
+  margin: 0;
+}
+
+.ttmuahang {
+  background-color: white;
+  color: white;
+  padding: 0px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+.ttmuahang h1{
+  text-align: center;
+  color: #000;
+
+}
+.ttmuahang a{
+  margin-left: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.ttmuahang button a  {
+  text-decoration: none;
+  color: #000;
+  height: 10px;
+}
+.ttmuahang button:hover{
+ background-color: #f39c12;
+}
 /* Cart table */
 .cart-table {
   width: 100%;

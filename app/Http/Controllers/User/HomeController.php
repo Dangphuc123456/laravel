@@ -11,11 +11,11 @@ use App\Models\User\TinTucModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\Cart;
 use App\Models\Contact;
 use App\Models\Gioithieu;
 use App\Models\OrderModel;
-use Session;
+use App\Models\OrderCart;
+use Termwind\Components\Raw;
 
 class HomeController extends Controller
 {
@@ -39,7 +39,7 @@ class HomeController extends Controller
 
     public function sanPham(){
         $sp = ProductModels::all();
-        $sp = ProductModels::paginate(28);
+        $sp = ProductModels::paginate(30);
         $lsp = CategoryModels::all();
         return view('User.sanPham',compact('sp', 'lsp'));
     }
@@ -79,10 +79,10 @@ class HomeController extends Controller
         return view('User.search',compact('product'));                       
     }
     public function danhMuc($CatID){
-        $loaisp =CategoryModels::all();
+        $lsp =CategoryModels::all();
         $loaisp = CategoryModels::where('CatID',$CatID)->first();
         $product = ProductModels::where('CatID', $loaisp->CatID)->get();
-        return view('User.danhMuc',compact('product')); 
+        return view('User.danhMuc',compact('product','lsp')); 
     }
 
     public function detailtinTuc($id)
@@ -119,5 +119,26 @@ class HomeController extends Controller
 
         return redirect()->route('contact.store');
     }
+
+    public function showCustomerOrders($UserName)
+    {
+        // Lấy thông tin khách hàng dựa vào UserName
+        $customer = Customer::where('UserName', $UserName)->first();
+
+        if (!$customer) {
+            return abort(404); // Trả về trang lỗi 404 nếu không tìm thấy khách hàng với UserName tương ứng
+        }
+
+        // Lấy danh sách các đơn hàng của khách hàng
+        $orders = OrderModel::where('CusID', $customer->CusID)->get();
+
+        // Duyệt qua từng đơn hàng và lấy thông tin chi tiết
+        foreach ($orders as $order) {
+            $order->details = OrderCart::where('OrdID', $order->OrdID)->with('cart')->get();
+        }
+
+        return view('orders', compact('customer', 'orders'));
+    }
+
 }
 

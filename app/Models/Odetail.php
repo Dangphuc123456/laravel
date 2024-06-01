@@ -8,9 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Odetail extends Model
 {
     use HasFactory;
+    public function order()
+    {
+        return $this->belongsTo(OrderModel::class, 'OrdID');
+    }
+
     public function product()
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class, 'ProID');
     }
     protected $table = 'orderdetail'; // tên bảng
     // Các cột trong bảng
@@ -22,4 +27,5 @@ class Odetail extends Model
         'created_at',
         'updated_at'
     ];
+    
 }

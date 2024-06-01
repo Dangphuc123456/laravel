@@ -95,9 +95,10 @@ class ProductController extends Controller
         $inventory=$product->inventory;
         $price=$product->price;
         $sold=$product->sold;
+        $quantity=$product->quantity;
         $updated_at =$product->updated_at;
 
-        return view('admin.product.detail', compact('product','ProID', 'CatID', 'ProName', 'ProDescription', 'ProColor','Metatitle', 'Materials', 'Size', 'ProImage', 'Tags', 'MoreImage', 'created_at', 'CreateBy', 'MetaDescriptions', 'Displayhome', 'Status', 'inventory', 'price' , 'sold', 'updated_at'));
+        return view('admin.product.detail', compact('product','ProID', 'CatID', 'ProName', 'ProDescription', 'ProColor','Metatitle', 'Materials', 'Size', 'ProImage', 'Tags', 'MoreImage', 'created_at', 'CreateBy', 'MetaDescriptions', 'Displayhome', 'Status', 'inventory', 'price' , 'sold','quantity', 'updated_at'));
 
     }
 
@@ -144,7 +145,8 @@ class ProductController extends Controller
             $product->Displayhome = $request->Displayhome;
             $product->Status = $request->Status;
             $product->inventory = $request->inventory;
-            $product->inventory = $request->price;
+            $product->price = $request->price;
+            $product->quantity = $request->quantity;
             $product->sold = $request->sold;
             // Lưu các thay đổi vào cơ sở dữ liệu
             $product->save(); 

@@ -18,7 +18,7 @@
     @include('User.partials.slide')
     <!-- Script slideshow -->    
     <div class="banner">
-        <h1 style="color: white;margin-left: 10px;margin-right: 10px;">Kết quả tìm kiếm</h1>
+        <h1 style="color: white;margin-left: 10px;margin-right: 10px;">Sản phẩm tìm kiếm</h1>
        <div class="slideshow-container">
             <div class="slide-group">
                 @foreach($product as $item)
@@ -32,7 +32,7 @@
                                     @endif
                                 </a>
                                 <div class="sale-off">
-                                    <span class="discount-percentage">3%</span>
+                                    <span class="discount-percentage"></span>
                                 </div>
                                 <div class="product-info">
                                     <h3 >{{$item->ProName}}</h3>

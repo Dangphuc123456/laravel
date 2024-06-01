@@ -8,20 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class OrderModel extends Model
 {
     use HasFactory;
-    public function orderDetails()
-    {
-        // return $this->hasMany(Orders_details::class);
-        return $this->hasMany(Odetail::class, 'OrdtID');
-    }
     public function customer()
     {
-        return $this->belongsTo(User::class, 'CusID');
-    }
-    public function customer_()
-    {
-        return $this->belongsTo(Customer::class, 'CusID','CusID');
+        return $this->belongsTo(Customer::class, 'CusID');
     }
 
+    public function orderDetails()
+    {
+        return $this->hasMany(Odetail::class, 'OrdID');
+    }
+    public function product()
+    {
+        return $this->belongsToMany(Product::class, 'cart', 'OrdID', 'ProID')
+                    ->withPivot('Quantity', 'Price');
+    }
+    public function cart()
+    {
+        return $this->belongsToMany(Cart::class, 'order_cart', 'OrdID', 'CartID');
+    }
     protected $table = 'order'; // tên bảng
     protected $primaryKey = 'OrdID';
     // Các cột trong bảng

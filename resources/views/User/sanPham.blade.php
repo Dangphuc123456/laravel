@@ -40,7 +40,7 @@
                     <!-- Xử lý nếu không có ảnh -->
                 @endif
             <div class="sale-off">
-              <span class="discount-percentage">3%</span>
+              <span class="discount-percentage"></span>
             </div>            
             <div class="product-info">
                 <h3 >{{$item->ProName}}</h3>
