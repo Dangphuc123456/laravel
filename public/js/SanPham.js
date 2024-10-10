@@ -1,26 +1,27 @@
 
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
+let slideIndex = 0;
+showSlides();
 
-function showSlide(index) {
-slides.forEach((slide) => {
-    slide.classList.remove('active');
-});
-slides[index].classList.add('active');
+function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
 }
-
-function nextSlide() {
-currentSlide++;
-if (currentSlide === slides.length) {
-    currentSlide = 0;
-}
-showSlide(currentSlide);
-}
-
-setInterval(nextSlide, 2000); // Thay đổi slide sau mỗi 2 giây
-
-// Hiển thị slide đầu tiên khi tải trang
-showSlide(currentSlide);
 /* -------------scroll------------------ */
 window.addEventListener('scroll', function() {
   var scrollToTopBtn = document.getElementById('scroll-to-top-btn');
@@ -58,4 +59,25 @@ document.addEventListener("click", function(event) {
 });
 
 
+
+// Khởi tạo số lượng sản phẩm trong giỏ hàng
+let cartCount = 0;
+
+// Hàm để cập nhật số lượng sản phẩm trong giỏ hàng
+function updateCartCount() {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+}
+
+// Bắt sự kiện nhấn vào nút "Thêm vào giỏ hàng"
+document.querySelector('.btn-add-to-cart').addEventListener('click', function(event) {
+    event.preventDefault(); // Ngăn chặn hành động mặc định (nếu có)
+    updateCartCount(); // Gọi hàm để cập nhật số lượng
+});
+document.querySelectorAll('.btn-add-to-cart').forEach(button => {
+  button.addEventListener('click', function(event) {
+      event.preventDefault();
+      updateCartCount();
+  });
+});
 

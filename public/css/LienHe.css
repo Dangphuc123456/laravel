@@ -1,0 +1,334 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    border: 3px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    background-color: antiquewhite;
+  }
+  /* -------------Header------------------ */
+  .main_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: auto;
+    border: 3px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    background-color: #1c1b1b;
+  }
+  
+  .logo img {
+    margin-top: 10px;
+    margin-left: 20px;
+  
+  }
+  
+  .diachi,
+  .giohang {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: aliceblue;
+  }
+  
+  .diachi svg,
+  .giohang svg {
+    width: 20px;
+    height: 20px;
+    color: red;
+    margin-left: 10px;
+  }
+  
+  .giohang button {
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+    margin-right: 40px;
+    background-color: yellow;
+    font-weight: bold;
+    border-radius: 68px;
+  }
+  
+  /* -------------menu------------------ */
+  .main_menu {
+    background-color: rgba(128, 255, 0, 0.716);
+    height: 59px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  
+  .main_menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 400px;
+  }
+  
+  .main_menu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .main_menu li:last-child {
+    margin-right: 0;
+  }
+  
+  .main_menu li a {
+    display: block;
+    padding: 10px 10px;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+  }
+  
+  .main_menu li a:hover {
+    background-color: #ccc;
+  }
+  
+  /* -------------tim kiem------------------ */
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    margin-left: 150px;
+  }
+  
+  .search-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 50px;
+  }
+  
+  /* thân trang */
+  i{
+    color: red;
+  }
+/* cuối trang */
+  .restaurant-footer {
+    background-color: #e1e1de;
+    color: #1c1b1b;
+    padding: 50px 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer-section {
+    flex: 1 1 300px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section.about .contact span {
+    display: block;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.about .social-media a {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .footer-section.about .social-media a:hover {
+    color: #f39c12;
+  }
+  
+  .footer-section.links ul {
+    list-style: none;
+  }
+  
+  .footer-section.links ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section.links ul li a {
+    color: #1c1b1b;
+    text-decoration: none;
+  }
+  
+  .footer-section.links ul li a:hover {
+    color: #f39c12;
+  }
+  
+  .contact-form .text-input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-form textarea {
+    height: 100px;
+  }
+  
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f39c12;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #e67e22;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    background-color: white;
+  }
+  
+  /* -------------scroll------------------ */
+  #scroll-to-top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: none;
+    padding: 10px;
+    border: 1px solid #999999;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: hsla(0, 0%, 100%, 1);
+  }
+  
+  #scroll-to-top-btn:hover {
+    background-color: lightgreen;
+  }
+  
+  #scroll-to-top-btn svg {
+    width: 30px;
+    height: 20px;
+    color: #999999;
+  }
+  
+  /* Ẩn dropdown-menu mặc định */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  /* Hiển thị dropdown-menu khi có class "show" */
+  .dropdown-menu.show {
+    display: block;
+  }
+  
+  /* Ẩn dropdown-menu mặc định */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  /* Hiển thị dropdown-menu khi có class "show" */
+  .dropdown-menu.show {
+    display: block;
+  }
+  .chat-container {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    z-index: 1000;
+  }
+  
+  /* Ô chat */
+.chat-widget {
+  width: 130px; /* Chiều rộng của widget */
+  height: 50px; /* Chiều cao của widget */
+  background-color: #fff; /* Màu nền */
+  border-radius: 40% / 100%; /* Bo tròn hai đầu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+  display: flex; /* Sử dụng Flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng khi hover */
+  cursor: pointer; /* Con trỏ khi hover */
+  overflow: hidden; /* Ẩn nội dung tràn ra ngoài */
+}
+
+/* Hiệu ứng hover cho ô chat */
+.chat-widget:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Tăng bóng khi hover */
+}
+
+/* Zalo Chat Widget */
+.zalo-chat {
+  background-color: #0085FF; /* Màu nền của Zalo chat */
+}
+.Facebook-chat{
+  background-color: #0085FF; /* Màu nền của Zalo chat */
+}
+
+.zalo-chat img {
+  width: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  height: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  border-radius: 50%; /* Bo tròn hình ảnh */
+  margin-right: 20px; /* Khoảng cách giữa hình ảnh và chữ */
+
+}
+.Facebook-chat  img {
+  width: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  height: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  border-radius: 50%; /* Bo tròn hình ảnh */
+margin-left:10px;
+
+}
+.chat-link {
+  display: flex; /* Sử dụng Flexbox để sắp xếp nội dung bên trong */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-decoration: none; /* Không có gạch chân cho liên kết */
+  color: #fff; /* Màu chữ */
+}
+
+/* Văn bản chat */
+.chat-text {
+  font-size: 14px; /* Kích thước chữ */
+  margin-right: 28px;
+}
+    

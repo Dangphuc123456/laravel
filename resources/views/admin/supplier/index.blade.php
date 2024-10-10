@@ -38,6 +38,25 @@
               </tbody>
             </table>
           </div>
+          <div class="d-flex justify-content-center pt-4">
+              <nav>
+                  <ul class="pagination">
+                      <!-- Link trang trước -->
+                      @if ($suppliers->onFirstPage())
+                          <li class="page-item disabled"><span class="page-link">Trước</span></li>
+                      @else
+                          <li class="page-item"><a class="page-link" href="{{ $suppliers->previousPageUrl() }}"><i class="fas fa-arrow-left"></i>Trước</a></li>
+                      @endif
+
+                      <!-- Link trang sau -->
+                      @if ($suppliers->hasMorePages())
+                          <li class="page-item"><a class="page-link" href="{{ $suppliers->nextPageUrl() }}">Sau<i class="fas fa-arrow-right"></i></a></li>
+                      @else
+                          <li class="page-item disabled"><span class="page-link">Sau</span></li>
+                      @endif
+                  </ul>
+              </nav>
+          </div>
        </div> 
     </div>
     

@@ -2,7 +2,7 @@
  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
-<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('login') }}">
     <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-user"></i>
     </div>
@@ -148,6 +148,18 @@
     <div id="collapseInvoice" class="collapse" aria-labelledby="headingInvoice" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{ route('admin.hoadonnhap.index') }}">Danh sách hóa đơn nhập</a>
+        </div>
+    </div>
+</li>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStatistics"
+        aria-expanded="true" aria-controls="collapseStatistics">
+        <i class="fa fa-chart-line"></i>
+        <span>Thống kê bán hàng</span>
+    </a>
+    <div id="collapseStatistics" class="collapse" aria-labelledby="headingStatistics" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="{{ route('admin.thongke.index') }}">Xem thống kê</a>
         </div>
     </div>
 </li>

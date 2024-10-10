@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\DB;
 class CartsController extends Controller
 {
     public function index()
-    {
+    {     
+        $Carts = Cart::paginate(15);
         // Lấy danh sách các mã khách hàng duy nhất từ giỏ hàng
         $uniqueCustomerIDs = Cart::distinct()->pluck('CusID');
 
@@ -26,7 +27,7 @@ class CartsController extends Controller
             $representativeItems[] = $representativeItem;
         }
 
-        return view('admin.cart.index', compact('representativeItems'));
+        return view('admin.cart.index', compact('representativeItems','Carts'));
     }
 
 

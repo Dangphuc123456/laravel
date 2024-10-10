@@ -1,60 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thông tin</title>
+    <title>Chi Tiết Đơn Hàng</title>
     <link rel="stylesheet" href="{{ asset('css/thongtin.css') }}">
+    <link rel="icon" href="{{ asset('anh/bon.jpg') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
+
 <body>
-        <div class="container">
-            <div class="header">
-                <img src="{{ asset('anh/bon.jpg') }}" alt="Bếp Nhà Bon Logo">
-                <h3>Bếp Nhà Bon</h3>
-            </div>
-            <p>165-Hai Bà Trung-Hà Nội</p>
-            <h3>Hóa đơn thanh toán </h3>
-            @if(isset($cart) && !empty($cart))
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Tên sản phẩm</th>
-                            <th>Số lượng</th>
-                            <th>Giá</th>
-                            <th>Thành tiền</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($cart as $item)
-                            <tr>
-                                <td>{{ $item['name'] }}</td>
-                                <td>{{ $item['quantity'] }}</td>
-                                <td>{{ $item['price'] }} VND</td>
-                                <td>{{ $item['price'] * $item['quantity'] }} VND</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <p style="margin-bottom: 10px; margin-top: 10px;"><strong>Tổng tiền:</strong> {{ $totalPrice }} VND</p>
-            @else
-                <p>Không có sản phẩm trong giỏ hàng.</p>
-            @endif
-            <p>Chúc quý khách vui vẻ, hẹn gặp lại!</p>
+
+    <!-- Chạy quảng cáo -->
+    <marquee direction="left">Cảm ơn bạn đã đặt hàng tại BonBon Delicious Food - Chúng tôi rất mong sớm được phục vụ bạn lần tới!</marquee>
+
+    @include('User.partials.header')
+    @include('User.partials.menu')
+    @include('User.partials.chat')
+
+    <div class="order-details">
+        <h1>Chi Tiết Đơn Hàng</h1>
+
+        @if(session('order_success'))
+        <div class="alert alert-success">
+            {{ session('order_success') }}
         </div>
-        <div class="container">
+        @endif
+
+        <div class="customer-info">
+            <h2>Thông Tin Khách Hàng</h2>
             <p><strong>Tên khách hàng:</strong> {{ $customer->CusName }}</p>
             <p><strong>Email:</strong> {{ $customer->CusEmail }}</p>
             <p><strong>Địa chỉ:</strong> {{ $customer->CusAddress }}</p>
             <p><strong>Số điện thoại:</strong> {{ $customer->CusPhone }}</p>
-        </div>  
-        <button id="cancelOrderBtn" style="margin-left: 668px;" type="button">Hủy đơn hàng</button>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $("#cancelOrderBtn").click(function(){
-                // Implement cancel order functionality here
-            });
-        });
-    </script>
+        </div>
+        <div class="order-products">
+            <h2>Sản Phẩm Đã Đặt</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng giá</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($cart as $item)
+                    <tr>
+                        <td>{{ $item['name'] }}</td>
+                        <td>{{ $item['quantity'] }}</td>
+                        <td>{{ number_format($item['price']) }} VND</td>
+                        <td>{{ number_format($item['price'] * $item['quantity']) }} VND</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
+            <div class="total-price">
+                <p style="margin: 10px 0;"><strong>Tổng tiền:</strong> {{ number_format($totalPrice) }} VND</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <a href="{{ route('home') }}"><button type="button">Về Trang Chủ</button></a>
+        </div>
+    </div>
+
+    @include('User.partials.footer')
+    @include('User.partials.scroll')
+    <script src="{{ asset('js/ChiTietDonHang.js') }}"></script>
+
 </body>
+
 </html>

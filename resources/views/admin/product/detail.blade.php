@@ -32,20 +32,8 @@
                     <td>{{$ProName}}</td>            
                 </tr>
                 <tr>
-                    <td style="vertical-align: top;">ProDescription:</td>      
-                    <td style="vertical-align: top;">{!! $ProDescription !!}</td>            
-                </tr>
-                <tr>
-                    <td>ProColor:</td>      
-                    <td>{{$ProColor}}</td>            
-                </tr>
-                <tr>
-                    <td>Materials:</td>      
-                    <td>{{$Materials}}</td>            
-                </tr>
-                <tr>
-                    <td>Size:</td>      
-                    <td>{{$Size}}</td>            
+                    <td>ProDescription:</td>      
+                    <td><p><?php echo strip_tags($product->ProDescription); ?></p></td>            
                 </tr>
                 <tr>
                     <td>ProImage:</td>      
@@ -86,6 +74,10 @@
                 <tr>
                     <td>price:</td>      
                     <td>{{$price}}</td>            
+                </tr>
+                <tr>
+                    <td>Discount:</td>      
+                    <td>{{$Discount}}</td>            
                 </tr>
                 <tr>
                     <td>sold:</td>      

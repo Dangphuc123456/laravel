@@ -17,156 +17,177 @@ class CartController extends Controller
 {
     public function gioHang()
     {
-        // Retrieve the cart data from the session
+        // Lấy dữ liệu giỏ hàng từ phiên
         $cart = session()->get('cart', []);
         $total = 0;
 
-        foreach($cart as $id => $details) {
+        foreach ($cart as $id => $details) {
             $total += $details['price'] * $details['quantity'];
         }
 
         return view('User.gioHang', compact('cart', 'total'));
-        // Pass the cart data to the view for rendering
+        // Chuyển dữ liệu giỏ hàng đến chế độ xem để kết xuất
     }
     public function addToCart(Request $request, $id)
-    {
-        // Step 1: Retrieve the sp information from the database
-        $sp = ProductModels::find($id);
+{
+    // Bước 1: Lấy thông tin SP từ cơ sở dữ liệu
+    $sp = ProductModels::find($id);
 
-        // Step 2: Validate if the sp exists and is available
-        if (!$sp) {
-            return redirect()->back()->with('error', 'Sản phẩm không tồn tại.');
-        }
+    // Bước 2: Xác thực nếu SP tồn tại và có sẵn
+    if (!$sp) {
+        return redirect()->back()->with('error', 'Sản phẩm không tồn tại.');
+    }
 
-        // Here you can add additional validation if needed, for example, checking if the sp is in stock
-        
-        // Step 3: Add the sp to the cart session
-        $cart = session()->get('cart');
+    // Ở đây bạn có thể thêm xác thực bổ sung nếu cần, ví dụ, kiểm tra xem SP có trong kho
 
-        // If cart is empty, then this is the first sp
-        if (!$cart) {
-            $cart = [
-                $id => [
-                    "name" => $sp->ProName,
-                    "quantity" => 1,
-                    "price" => $sp->price,
-                    "image" => $sp->ProImage
-                ]
-            ];
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
-        }
+    // Bước 3: Xác định giá sản phẩm dựa trên giảm giá nếu có
+    $price = $sp->Discount > 0 ? $sp->DiscountedPrice : $sp->price;
 
-        // If the sp is already in the cart, increase the quantity
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-            session()->put('cart', $cart);
-            return redirect()->back()->with('success', 'Sản phẩm và số lượng đã được thêm vào giỏ hàng .');
-        }
+    // Bước 4: Lấy số lượng từ request
+    $quantity = $request->input('quantity', 1); // Mặc định là 1 nếu không có số lượng
 
-        // If the sp is not in the cart, add it to the cart
-        $cart[$id] = [
-            "name" => $sp->ProName,
-            "quantity" => 1,
-            "price" => $sp->price,
-            "image" => $sp->ProImage
+    // Bước 5: Thêm SP vào phiên giỏ hàng
+    $cart = session()->get('cart');
+
+    // Nếu giỏ hàng trống, thì đây là sản phẩm đầu tiên
+    if (!$cart) {
+        $cart = [
+            $id => [
+                "name" => $sp->ProName,
+                "quantity" => $quantity, // Sử dụng số lượng từ input
+                "price" => $price, // Sử dụng giá đã giảm nếu có
+                "image" => $sp->ProImage
+            ]
         ];
         session()->put('cart', $cart);
         return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
     }
-    
-    public function update(Request $request, $id)
-{
-    $cart = session()->get('cart');
 
-    // Kiểm tra nếu sản phẩm tồn tại trong giỏ hàng
-    if (!isset($cart[$id])) {
-        return response()->json(['error' => 'Sản phẩm không tồn tại trong giỏ hàng'], 404);
+    // Nếu SP đã ở trong giỏ hàng, hãy tăng số lượng
+    if (isset($cart[$id])) {
+        $cart[$id]['quantity'] += $quantity; // Tăng số lượng bằng giá trị từ input
+        $cart[$id]['price'] = $price; // Đảm bảo giá được cập nhật nếu có giảm giá
+        session()->put('cart', $cart);
+        return redirect()->back()->with('success', 'Sản phẩm và số lượng đã được thêm vào giỏ hàng.');
     }
 
-    // Cập nhật số lượng trong session
-    $cart[$id]['quantity'] = $request->input('quantity');
+    // Nếu SP không có trong giỏ hàng, hãy thêm nó vào giỏ hàng
+    $cart[$id] = [
+        "name" => $sp->ProName,
+        "quantity" => $quantity, // Sử dụng số lượng từ input
+        "price" => $price, // Sử dụng giá đã giảm nếu có
+        "image" => $sp->ProImage
+    ];
     session()->put('cart', $cart);
-
-    // Tính toán giá mới cho sản phẩm
-    $newTotalPrice = $cart[$id]['quantity'] * $cart[$id]['price'];
-
-    // Tính toán tổng giỏ hàng mới
-    $cartTotal = 0;
-    foreach ($cart as $item) {
-        $cartTotal += $item['price'] * $item['quantity'];
-    }
-
-    // Trả về số lượng và tổng giá mới
-    return response()->json(['quantity' => $cart[$id]['quantity'], 'total' => $newTotalPrice, 'cartTotal' => $cartTotal]);
+    return redirect()->back()->with('success', 'Sản phẩm đã được thêm vào giỏ hàng.');
 }
 
-    
-    public function showCart()
+
+
+    public function update(Request $request, $id)
     {
-        // Retrieve the cart data from the session
         $cart = session()->get('cart');
 
-        // If cart is empty, return a message or handle it accordingly
+        // Kiểm tra nếu sản phẩm tồn tại trong giỏ hàng
+        if (!isset($cart[$id])) {
+            return response()->json(['error' => 'Sản phẩm không tồn tại trong giỏ hàng'], 404);
+        }
+
+        // Cập nhật số lượng trong session
+        $cart[$id]['quantity'] = $request->input('quantity');
+        session()->put('cart', $cart);
+
+        // Tính toán giá mới cho sản phẩm
+        $newTotalPrice = $cart[$id]['quantity'] * $cart[$id]['price'];
+
+        // Tính toán tổng giỏ hàng mới
+        $cartTotal = 0;
+        foreach ($cart as $item) {
+            $cartTotal += $item['price'] * $item['quantity'];
+        }
+
+        // Trả về số lượng và tổng giá mới
+        return response()->json(['quantity' => $cart[$id]['quantity'], 'total' => $newTotalPrice, 'cartTotal' => $cartTotal]);
+    }
+
+
+    public function showCart()
+    {
+        // Lấy dữ liệu giỏ hàng từ phiên
+        $cart = session()->get('cart');
+
+        // Nếu giỏ hàng trống, trả về chế độ xem với giỏ hàng rỗng
         if (!$cart) {
             return view('cart')->with('cart', []);
         }
 
-        // Retrieve the sp details for each item in the cart
+        // Lấy các chi tiết sản phẩm cho từng mặt hàng trong giỏ hàng
         $cartWithData = [];
         foreach ($cart as $id => $item) {
             $sp = ProductModels::find($id);
             if ($sp) {
-                // Collect all necessary sp information
+                // Thu thập tất cả thông tin sản phẩm cần thiết
                 $spInfo = [
                     'ProID' => $sp->ProID,
                     'ProName' => $sp->ProName,
                     'ProDescription' => $sp->ProDescription,
-                    'ProColor' => $sp->ProColor,
-                    'Materials' => $sp->Materials,
-                    'Size' => $sp->Size,
                     'ProImage' => $sp->ProImage,
                     'price' => $sp->price,
+                    'Discount' => $sp->Discount,
+                    'DiscountedPrice' => $sp->DiscountedPrice,
                     'quantity' => $item['quantity'],
-                    'total' => $item['quantity'] * $sp->price,
+                    'total' => $item['quantity'] * ($sp->Discount > 0 ? $sp->DiscountedPrice : $sp->price),
                 ];
 
-                // Add sp information to the cartWithData array
+                // Thêm thông tin sản phẩm vào giỏ hàng với mảng dữ liệu
                 $cartWithData[] = $spInfo;
             }
         }
 
-        // Pass the cart data to the view for rendering
+        // Chuyển dữ liệu giỏ hàng đến chế độ xem để kết xuất
         return view('cart')->with('cart', $cartWithData);
+    }
+
+    public function getCartCount()
+    {
+        // Assuming you are using a session or authenticated user to store cart information
+        $count = 0;
+
+        // Check if the cart session exists and count the number of items
+        if (session()->has('cart')) {
+            $count = array_sum(array_column(session('cart'), 'quantity')); // Assuming 'quantity' holds the number of each product
+        }
+
+        return response()->json(['count' => $count]);
     }
 
 
     public function removeFromCart($id)
     {
-        // Get the cart from the session
+        // Nhận cart từ phiên
         $cart = session()->get('cart');
 
-        // Check if the item exists in the cart
+        // Kiểm tra xem mặt hàng có tồn tại trong giỏ hàng không
         if (isset($cart[$id])) {
-            // Remove the item from the cart
+            // Xóa vật phẩm khỏi giỏ hàng
             unset($cart[$id]);
 
-            // Update the cart session with the modified cart
+            // Cập nhật phiên giỏ hàng với giỏ hàng đã sửa đổi
             session()->put('cart', $cart);
 
-            // Optionally, you can return a response or redirect to the cart page
-            return redirect()->route('gioHang')->with('success', 'Item removed from cart successfully.');
+            // Tùy chọn, bạn có thể trả lại phản hồi hoặc chuyển hướng đến trang giỏ hàng
+            return redirect()->route('gioHang')->with('success', '.');
         }
 
-        // If the item does not exist in the cart, return with an error message or redirect to the cart page
-        return redirect()->route('gioHang')->with('error', 'Item not found in cart.');
+        // Nếu mặt hàng không tồn tại trong giỏ hàng, hãy trả về với thông báo lỗi hoặc chuyển hướng đến trang giỏ hàng
+        return redirect()->route('gioHang')->with('error', '.');
     }
 
-    
+
     public function thanhToan()
     {
-    // Lấy giỏ hàng từ session
-    $cart = session()->get('cart');
+        // Lấy giỏ hàng từ session
+        $cart = session()->get('cart');
 
         // Nếu giỏ hàng không tồn tại hoặc trống, chuyển hướng trở lại trang giỏ hàng
         if (!$cart || empty($cart)) {
@@ -183,96 +204,98 @@ class CartController extends Controller
         return view('User.thanhToan', compact('cart', 'totalPrice'));
     }
     public function store(Request $request)
-        {
-            // Retrieve the authenticated user
-            $user = Auth::user();
+    {
+        // Truy xuất người dùng được xác thực
+        $user = Auth::user();
 
-            // Check if the user is authenticated
-            if ($user) {
-                // Create a new instance of Customer model
-                $customer = new Customer();
+        // Kiểm tra xem người dùng có được xác thực không
+        if ($user) {
+            // Tạo một thể hiện mới của mô hình khách hàng
+            $customer = new Customer();
 
-                // Assign values from the request
-                $customer->CusName = $request->name;
-                $customer->CusEmail = $request->email;
-                $customer->CusAddress = $request->address;
-                $customer->CusPhone = $request->phone;
+            // gán giá trị từ yêu cầu
+            $customer->CusName = $request->name;
+            $customer->CusEmail = $request->email;
+            $customer->CusAddress = $request->address;
+            $customer->CusPhone = $request->phone;
 
-                // Associate the username from the authenticated user
-                $customer->UserName = $user->username; // Assuming the username field in the users table
+            // liên kết tên người dùng từ người dùng được xác thực
+            $customer->UserName = $user->username; // Giả sử trường tên người dùng trong bảng người dùng
 
-                // Save the customer data
-                $customer->save();
+            // Lưu dữ liệu khách hàng
+            $customer->save();
 
-                // Get current datetime
-                $currentDateTime = Carbon::now()->toDateTimeString();
+            // Nhận DateTime hiện tại
+            $currentDateTime = Carbon::now()->toDateTimeString();
 
-               
-                // Save cart items to Cart table
-                $cartItems = $request->input('products', []);
-                foreach ($cartItems as $id => $details) {
-                    $cartData = [
-                        'CusID' => $customer->CusID,
-                        'ProID' => $details['id'],
-                        'Quantity' => $details['quantity'],
-                        'Price' => $details['price'],
-                        'Status' => 1, // Or 0 depending on the order status
-                        'created_at' => $currentDateTime,
-                        'updated_at' => $currentDateTime,
-                        'ProName' => $details['name'], // Assuming product name needs to be saved
-                    ];
-                    Cart::create($cartData);
-                }
 
-                $order = new OrderModel();
-                $order->CusID = $customer->CusID;
-                $order->Name = $request->input('name');
-                $order->OrderDate = date('Y-m-d');
-                $order->Status = 'Đang chờ xử lý';
-                $order->Address = $request->input('address');
-                $order->Phone = $request->input('phone');
-                $order->MoneyTotal = $request->input('totalPrice'); // Cần kiểm tra xem totalPrice có truyền từ view không
-                $order->Email = $request->input('email');
-                $order->Payment = $request->input('payment');
-                $order->Note = $request->input('note');
-                $order->save();
-
-                // Lưu chi tiết đơn hàng vào bảng orderdetail
-                // Lấy OrdID của đơn hàng mới tạo
-                $order = $order->OrdID;
-
-                // Lưu chi tiết đơn hàng vào bảng orderdetail
-                $cartItems = $request->input('products', []);
-
-                foreach ($cartItems as $id => $details) {
-                    $orderDetail = new Odetail();
-                    $orderDetail->OrdID = $order;
-                    $orderDetail->ProID = $details['id'];
-                    $orderDetail->Quantity = $details['quantity'];
-                    $orderDetail->Price = $details['price'];
-                    $orderDetail->save();
-                }
-
-                // Clear the cart session after checkout
-                session()->forget('cart');
-                
-                $cart = $cartItems;
-                $totalPrice = $request->input('totalPrice');
-                return view('User.thongtin', compact('customer', 'cart', 'totalPrice', 'order'));
-                // Redirect or return response as needed
-            } else {
-                
+            // Lưu các mặt hàng xe đẩy vào bảng giỏ hàng
+            $cartItems = $request->input('products', []);
+            foreach ($cartItems as $id => $details) {
+                $cartData = [
+                    'CusID' => $customer->CusID,
+                    'ProID' => $details['id'],
+                    'Quantity' => $details['quantity'],
+                    'Price' => $details['price'],
+                    'Status' => 1, // hoặc 0 tùy thuộc vào trạng thái đặt hàng
+                    'created_at' => $currentDateTime,
+                    'updated_at' => $currentDateTime,
+                    'ProName' => $details['name'], // Giả sử tên sản phẩm cần được lưu
+                ];
+                Cart::create($cartData);
             }
-        }
-        public function thongtin( $OrdID)
-        {
-            return view('User.thongtin',);
-        }
 
-        public function showConfirmation($OrdID)
-        {
-            $order = OrderModel::findOrFail($OrdID);
-            // Hiển thị view với thông tin đơn hàng và trạng thái xác nhận
-            return view('User.thongtin', compact('order'));
+            $order = new OrderModel();
+            $order->CusID = $customer->CusID;
+            $order->Name = $request->input('name');
+            $order->OrderDate = date('Y-m-d');
+            $order->Status = 'Đang chờ xử lý';
+            $order->Address = $request->input('address');
+            $order->Phone = $request->input('phone');
+            $order->MoneyTotal = $request->input('totalPrice'); // Cần kiểm tra xem totalPrice có truyền từ view không
+            $order->Email = $request->input('email');
+            $order->Payment = $request->input('payment');
+            $order->Note = $request->input('note');
+            $order->save();
+
+            // Lưu chi tiết đơn hàng vào bảng orderdetail
+            // Lấy OrdID của đơn hàng mới tạo
+            $order = $order->OrdID;
+
+            // Lưu chi tiết đơn hàng vào bảng orderdetail
+            $cartItems = $request->input('products', []);
+
+            foreach ($cartItems as $id => $details) {
+                $orderDetail = new Odetail();
+                $orderDetail->OrdID = $order;
+                $orderDetail->ProID = $details['id'];
+                $orderDetail->Quantity = $details['quantity'];
+                $orderDetail->Price = $details['price'];
+                // Lưu thêm ảnh và tên sản phẩm
+                $orderDetail->ProImage = isset($details['image']) ? $details['image'] : null;
+                $orderDetail->ProName = isset($details['name']) ? $details['name'] : null;
+                $orderDetail->save();
+            }
+
+            // Xóa phiên giỏ hàng sau khi thanh toán
+            session()->forget('cart');
+
+            $cart = $cartItems;
+            $totalPrice = $request->input('totalPrice');
+            return view('User.thongtin', compact('customer', 'cart', 'totalPrice', 'order'));
+            // Chuyển hướng hoặc trả lời trả lời khi cần
+        } else {
         }
+    }
+    public function thongtin($OrdID)
+    {
+        return view('User.thongtin',);
+    }
+
+    public function showConfirmation($OrdID)
+    {
+        $order = OrderModel::findOrFail($OrdID);
+        // Hiển thị view với thông tin đơn hàng và trạng thái xác nhận
+        return view('User.thongtin', compact('order'));
+    }
 }

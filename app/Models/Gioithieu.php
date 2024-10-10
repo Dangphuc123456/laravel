@@ -19,6 +19,14 @@ class Gioithieu extends Model
         'content_3',
         'content_4',
         'content_5',
-        'image'
+        'image',
+        'created_at',
+        'update_at',
+        'content_6',
+        'content_7',
+        'content_8',
+        'content_9',
+        'content_10'
+
     ];
 }

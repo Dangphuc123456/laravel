@@ -22,6 +22,10 @@ class TinTuc extends Model
         'content_3',
         'content_4',
         'content_5',
+        'content_6',
+        'content_7',
+        'content_8',
+        'content_9',
         'image_1',
         'image_2',
         'image_3',
@@ -31,4 +35,3 @@ class TinTuc extends Model
         'updated_at'
     ];
 }
-

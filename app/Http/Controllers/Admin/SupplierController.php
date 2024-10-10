@@ -10,7 +10,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        $suppliers = Supplier::all();
+        $suppliers = Supplier::paginate(15);
         return view('admin.supplier.index', compact('suppliers'));
     }
 
@@ -34,7 +34,7 @@ class SupplierController extends Controller
 
         Supplier::create($data);
 
-        return redirect()->route('admin.supplier.index')->with('success', 'Thêm thành công danh mục!');
+        return redirect()->route('admin.supplier.index')->with('success', 'Thêm thành công nhà cung cấp!');
     }
     public function show($id)
     {
@@ -83,7 +83,7 @@ class SupplierController extends Controller
         $data['updated_at'] = now();
         $supplier->update($data);
 
-        return redirect()->route('admin.supplier.index', ['id' => $id])->with('success', 'Danh mục đã được cập nhật thành công.');
+        return redirect()->route('admin.supplier.index', ['id' => $id])->with('success', 'Nhà cung cấp đã được cập nhật thành công.');
     }
 
     public function destroy($id)

@@ -16,9 +16,6 @@ class Product extends Model
         'Metatitle',
         'ProName',
         'ProDescription',
-        'ProColor',
-        'Materials',
-        'Size',
         'ProImage',
         'Tags',
         'MoreImage',
@@ -30,6 +27,8 @@ class Product extends Model
         'inventory',
         'price',
         'sold',
+        'Discount',
+        'DiscountedPrice',
         'quantity',
         'updated_at' 
     ];

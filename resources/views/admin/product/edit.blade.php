@@ -34,18 +34,6 @@
                 </tr>
                 
                 <tr>
-                    <td>ProColor</td>
-                    <td><input type='text' name='ProColor' id='ProColor' value='{{$product->ProColor}}'></td>                  
-                </tr>
-                <tr>
-                    <td>Materials</td>
-                    <td><input type='text' name='Materials' id='Materials' value='{{$product->Materials}}'></td>                  
-                </tr>
-                <tr>
-                    <td>Size</td>
-                    <td><input type='text' name='Size' id='Size' value='{{$product->Size}}'></td>                  
-                </tr>
-                <tr>
                     <td>ProImage</td>
                     <td><input type='file' name='ProImage' id='ProImage' value='{{$product->ProImage}}'></td>                  
                 </tr>
@@ -81,6 +69,10 @@
                 <tr>
                     <td>sold</td>
                     <td><input type='text' name='sold' id='sold' value='{{$product->sold}}'></td>                  
+                </tr>
+                <tr>
+                    <td>Discount</td>
+                    <td><input type='text' name='Discount' id='Discount' value='{{$product->Discount}}'></td>                  
                 </tr>
                 <tr>
                     <td>quantity</td>

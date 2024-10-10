@@ -4,6 +4,7 @@
         <li><a href="{{route('sanPham')}}">Sản phẩm</a></li>
         <li><a href="{{route('gioiThieu')}}">Giới thiệu</a></li>
         <li><a href="{{route('tinTuc')}}">Tin tức</a></li>
+        <li><a href="{{route('lienHe')}}">Liên hệ</a></li>
         <li><a href="{{ route('login') }}">Login</a></li>
       </ul>
       <!---Tìm kiếm--->

@@ -1,185 +1,209 @@
-body{
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
   border: 3px solid transparent;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  background-color: antiquewhite;
 }
 /* -------------Header------------------ */
 .main_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: auto;
-    border: 3px solid transparent;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    padding: 5px;
-    background-color: #1c1b1b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: auto;
+  border: 3px solid transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  padding: 5px;
+  background-color: #1c1b1b;
 }
 
 .logo img {
-    margin-top: 10px;
-    margin-left: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
 }
 
 .diachi,
 .giohang {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: aliceblue;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: aliceblue;
 }
 
 .diachi svg,
 .giohang svg {
-    width: 20px;
-    height: 20px;
-    color: red;
-    margin-left: 10px;
+  width: 20px;
+  height: 20px;
+  color: red;
+  margin-left: 10px;
+}
+.diachi button{
+  width: 160px;
+  height: 50px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 20%;
+  margin-left: 60px;
+}
+ i{
+  color: red;
+}
+.giohang button {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  margin-right: 40px;
+  background-color: yellow;
+  font-weight: bold;
+  border-radius: 68px;
 }
 
-.giohang button {
-    cursor: pointer;
-    width: 120px;
-    height:40px;
-    margin-right: 40px;
-    background-color: yellow;
-    font-weight: bold;
-    border-radius: 68px;
-} 
 /* -------------menu------------------ */
 .main_menu {
-    background-color: rgba(128, 255, 0, 0.716);
-    height: 59px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    border: 1px solid transparent;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-  }
-  .main_menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    margin-left: 280px;
-  }
+  background-color: rgba(128, 255, 0, 0.716);
+  height: 59px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
 
-  .main_menu li {
-    display: inline-block;
-    margin-right: 10px;
-  }
+.main_menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 400px;
+}
 
-  .main_menu li:last-child {
-    margin-right: 0;
-  }
+.main_menu li {
+  display: inline-block;
+  margin-right: 10px;
+}
 
-  .main_menu li a {
-    display: block;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: #000;
-  }
+.main_menu li:last-child {
+  margin-right: 0;
+}
 
-  .main_menu li a:hover {
-    background-color: #ccc;
-  }
-  /* -------------tim kiem------------------ */
-  .search-form {
-    display: flex;
-    align-items: center;
-  }
+.main_menu li a {
+  display: block;
+  padding: 10px 10px;
+  text-decoration: none;
+  color: #000;
+  font-size: 16px;
+}
 
-  .search-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    outline: none;
-    margin-left: 150px;
-  }
+.main_menu li a:hover {
+  background-color: #ccc;
+}
 
-  .search-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 5px;
-    margin-right: 50px;
-  }
-   /* -------------slide------------------ */
-   .slideshow-container {
-    position: relative;
-    width: 700px;
-    height: 3000px; /* Điều chỉnh chiều cao slideshow */
-    overflow: hidden;
-    }
 
-    .slide {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-    }
+/* -------------tim kiem------------------ */
+.search-form {
+  display: flex;
+  align-items: center;
+}
 
-    .slide.active {
-    opacity: 1;
-    }
+.search-input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  margin-left: 150px;
+}
 
-    .container.slide img {
-    width: 100%;
-    height: 1000px;
-    object-fit: cover;
-    margin-bottom: 10px;
-    }
-    .container {
-    display: flex;
-    flex-direction: column;
-    height: 750px;
-    }
+.search-button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 50px;
+}
 
-    .slideshow-container {
-    flex: 1;
-    }
-    .container{
-      border: 1px solid transparent;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    }
-    /* menu-hor */
-    .menu-horizontal {
-      width: 100%;
-      background-color: #f2f2f2;
-    }
-    
-    .menu-horizontal ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center; /* Căn giữa các mục */
-    }
-    
-    .menu-horizontal li {
-      padding: 10px 20px;
-    }
-    
-    .menu-horizontal a {
-      text-decoration: none;
-      color: #333;
-    }
-    
-    .menu-horizontal a:hover {
-      color: #0f0; /* Màu xanh lá cây */
-    }
- 
+/* -------------slide------------------ */
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
 
-/* -------------footer------------------ */          
+/* Hide slides by default */
+.mySlides {
+  display: none;
+}
+
+/* Fade effect */
+.fade {
+  animation: fade 2s ease-in-out;
+}
+
+
+/* Style the navigation dots */
+.dot-container {
+  text-align: center;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.dot.active {
+  background-color: #717171;
+}
+
+
+/* menu-hor */
+.menu-horizontal {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+.menu-horizontal ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  /* Căn giữa các mục */
+}
+
+.menu-horizontal li {
+  padding: 10px 20px;
+}
+
+.menu-horizontal a {
+  text-decoration: none;
+  color: #333;
+}
+
+.menu-horizontal a:hover {
+  color: #0f0;
+  /* Màu xanh lá cây */
+}
+
+
+/* -------------footer------------------ */
 .restaurant-footer {
-  background-color: #CCCC99;
+  background-color: #e1e1de;
   color: #1c1b1b;
   padding: 50px 0;
 }
@@ -200,18 +224,11 @@ body{
 .footer-section h2 {
   font-size: 20px;
   margin-bottom: 20px;
-  margin-left: 0px;
 }
-.footer-section p {
-  
-    margin-bottom: 0px;
-    margin-left: 0px;
-  }
 
 .footer-section.about .contact span {
   display: block;
   margin-bottom: 10px;
-  margin-left: 0px;
 }
 
 .footer-section.about .social-media a {
@@ -226,12 +243,10 @@ body{
 
 .footer-section.links ul {
   list-style: none;
-  margin-left: 0px;
 }
 
 .footer-section.links ul li {
   margin-bottom: 10px;
-  margin-left: 0px;
 }
 
 .footer-section.links ul li a {
@@ -249,16 +264,8 @@ body{
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-left: 70px;
 }
-.contact-form button {
-   
-    margin-left: 170px;
-  }
-  .contact-form h2 {
-   
-    margin-left: 170px;
-  }
+
 .contact-form textarea {
   height: 100px;
 }
@@ -284,67 +291,172 @@ body{
 }
 
 /* -------------scroll------------------ */
-          #scroll-to-top-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            display: none;
-            padding: 10px;
-            background-color: #555;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            border-radius: 99px;
-            background-color:black;
-          }
-  
-          #scroll-to-top-btn:hover {
-            background-color: lightgreen;
-          }
-          #scroll-to-top-btn svg{
-              width: 30px;
-              height: 20px;
-          }
+#scroll-to-top-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: none;
+  padding: 10px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 99px;
+  background-color: black;
+}
 
-          /* Ẩn dropdown-menu mặc định */
-        .dropdown-menu {
-          display: none;
-          position: absolute;
-          background-color: #fff;
-          border: 1px solid #ccc;
-          padding: 10px;
-          z-index: 1000;
-        }
+#scroll-to-top-btn:hover {
+  background-color: lightgreen;
+}
 
-        /* Hiển thị dropdown-menu khi có class "show" */
-        .dropdown-menu.show {
-          display: block;
-        }
-        .container-fluid {
-            padding: 50px; /* Thêm padding để tạo khoảng cách với viền của trình duyệt */
-        }
-        
-        .row {
-            margin: 0; /* Xóa margin mặc định của dòng */
-        }
-        
-        .col-lg-8 {
-            padding-right: calc((100% - 402px) / 2); /* Tính toán padding phải của cột lớn để căn chỉnh vị trí của hình ảnh */
-        }
-        
-        .col-lg-4 img {
-            max-width: 100%; /* Đảm bảo hình ảnh không vượt quá kích thước của cột */
-            height: auto; /* Đảm bảo tỷ lệ khung hình được duy trì */
-            display: block; /* Loại bỏ khoảng trống dư thừa ở dưới hình ảnh */
-            float: right; /* Đẩy hình ảnh lên bên phải */
-            margin-left: 20px; /* Tạo khoảng cách giữa hình ảnh và văn bản */
-        }
-        
-        @media (max-width: 991.98px) {
-            .col-lg-8 {
-                padding-right: 0; /* Xóa padding phải của cột lớn khi màn hình nhỏ hơn 992px */
-                margin-bottom: 20px; /* Thêm khoảng cách dưới cột lớn */
-            }
-        }
-        
+#scroll-to-top-btn svg {
+  width: 30px;
+  height: 20px;
+}
+
+/* Ẩn dropdown-menu mặc định */
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+}
+
+/* Hiển thị dropdown-menu khi có class "show" */
+.dropdown-menu.show {
+  display: block;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  height: 100vh; /* Chiều cao toàn màn hình */
+  padding: 50px;
+  text-align: left; /* Căn lề trái cho nội dung bên trong */
+}
+
+.container-fluid .row {
+  width: 100%; /* Đảm bảo row chiếm hết chiều ngang */
+  max-width: 1200px; /* Giới hạn chiều rộng tối đa để không quá lớn */
+}
+
+.container-fluid h1, 
+.container-fluid h2 {
+  text-align: center; /* Căn giữa các tiêu đề */
+  margin-bottom: 20px;
+}
+
+.container-fluid p {
+  text-align: justify; /* Căn đều các đoạn văn bản */
+  margin-bottom: 15px; /* Tạo khoảng cách giữa các đoạn văn */
+}
+
+.container-fluid img {
+  display: block;
+  margin: 20px auto; /* Căn giữa hình ảnh theo chiều ngang */
+  border-radius: 5px;
+}
+
+
+.row {
+  margin: 0;
+  /* Xóa margin mặc định của dòng */
+}
+
+.col-lg-8 {
+  padding-right: calc((100% - 402px) / 2);
+  /* Tính toán padding phải của cột lớn để căn chỉnh vị trí của hình ảnh */
+}
+
+.col-lg-4 img {
+  max-width: 100%;
+  /* Đảm bảo hình ảnh không vượt quá kích thước của cột */
+  height: auto;
+  /* Đảm bảo tỷ lệ khung hình được duy trì */
+  display: block;
+  /* Loại bỏ khoảng trống dư thừa ở dưới hình ảnh */
+  float: right;
+  /* Đẩy hình ảnh lên bên phải */
+  margin-left: 20px;
+  /* Tạo khoảng cách giữa hình ảnh và văn bản */
+}
+
+@media (max-width: 991.98px) {
+  .col-lg-8 {
+    padding-right: 0;
+    /* Xóa padding phải của cột lớn khi màn hình nhỏ hơn 992px */
+    margin-bottom: 20px;
+    /* Thêm khoảng cách dưới cột lớn */
+  }
+}
+/* Container chứa các ô chat */
+.chat-container {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  z-index: 1000;
+}
+
+/* Ô chat */
+.chat-widget {
+  width: 130px; /* Chiều rộng của widget */
+  height: 50px; /* Chiều cao của widget */
+  background-color: #fff; /* Màu nền */
+  border-radius: 40% / 100%; /* Bo tròn hai đầu */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Đổ bóng */
+  display: flex; /* Sử dụng Flexbox */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  justify-content: center; /* Căn giữa theo chiều ngang */
+  transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng khi hover */
+  cursor: pointer; /* Con trỏ khi hover */
+  overflow: hidden; /* Ẩn nội dung tràn ra ngoài */
+}
+
+/* Hiệu ứng hover cho ô chat */
+.chat-widget:hover {
+  transform: scale(1.1); /* Phóng to nhẹ khi hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Tăng bóng khi hover */
+}
+
+/* Zalo Chat Widget */
+.zalo-chat {
+  background-color: #0085FF; /* Màu nền của Zalo chat */
+}
+.Facebook-chat{
+  background-color: #0085FF; /* Màu nền của Zalo chat */
+}
+
+.zalo-chat img {
+  width: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  height: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  border-radius: 50%; /* Bo tròn hình ảnh */
+  margin-right: 20px; /* Khoảng cách giữa hình ảnh và chữ */
+
+}
+.Facebook-chat  img {
+  width: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  height: 50px; /* Điều chỉnh kích thước hình ảnh cho phù hợp */
+  border-radius: 50%; /* Bo tròn hình ảnh */
+margin-left:10px;
+
+}
+.chat-link {
+  display: flex; /* Sử dụng Flexbox để sắp xếp nội dung bên trong */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  text-decoration: none; /* Không có gạch chân cho liên kết */
+  color: #fff; /* Màu chữ */
+}
+
+/* Văn bản chat */
+.chat-text {
+  font-size: 14px; /* Kích thước chữ */
+  margin-right: 28px;
+}

@@ -12,8 +12,10 @@ class Contact extends Model
     protected $primaryKey = 'id';    // khóa chính
     // Các cột trong bảng
     protected $fillable = [
-    'id',
-    'email',
-    'message'
-     ];
+        'id',
+        'email',
+        'message',
+        'created_at',
+        'updated_at'
+    ];
 }

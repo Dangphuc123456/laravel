@@ -15,7 +15,7 @@ class Odetail extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'ProID');
+        return $this->belongsTo(Product::class, 'ProID', 'ProID');
     }
     protected $table = 'orderdetail'; // tên bảng
     // Các cột trong bảng

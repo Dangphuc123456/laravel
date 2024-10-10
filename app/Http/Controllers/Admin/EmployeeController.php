@@ -47,7 +47,7 @@ class EmployeeController extends Controller
             ];
             employee::create($data);
             //sau khi thêm xong hiển thị sang trang index thông báo thêm thành công
-            return redirect()->route('admin.employee.index')->with('success','Thêm thành công danh mục!');
+            return redirect()->route('admin.employee.index')->with('success','Thêm thành công nhân viên!');
         }
     }
 
@@ -119,7 +119,7 @@ class EmployeeController extends Controller
             $employee->updated_at = $request->updated_at;
             // Lưu các thay đổi vào cơ sở dữ liệu
             $employee->save(); 
-            return redirect()->route('admin.employee.index', ['EmpID' => $EmpID])->with('success', 'Danh mục đã được cập nhật thành công.');
+            return redirect()->route('admin.employee.index', ['EmpID' => $EmpID])->with('success', 'Nhân viên đã được cập nhật thành công.');
     }
 
     /**
@@ -129,6 +129,6 @@ class EmployeeController extends Controller
     {
         $employee = employee::find($EmpID);
         $employee->delete();
-        return redirect()->route('admin.employee.index')->with('success', 'Xóa danh mục thành công!');
+        return redirect()->route('admin.employee.index')->with('success', 'Xóa nhân viên thành công!');
     }
 }

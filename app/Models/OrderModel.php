@@ -22,9 +22,17 @@ class OrderModel extends Model
         return $this->belongsToMany(Product::class, 'cart', 'OrdID', 'ProID')
                     ->withPivot('Quantity', 'Price');
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'OrdID', 'OrdID');
+    }
     public function cart()
     {
-        return $this->belongsToMany(Cart::class, 'order_cart', 'OrdID', 'CartID');
+        return $this->belongsToMany(Cart::class, 'order_cart', 'OrdID', 'OrdID');
+    }
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class, 'OrdID', 'OrdID');
     }
     protected $table = 'order'; // tên bảng
     protected $primaryKey = 'OrdID';

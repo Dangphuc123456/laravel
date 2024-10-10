@@ -54,7 +54,27 @@
                 <tr>
                     <td>updated_at:</td>      
                     <td>{{$updated_at}}</td>            
-                </tr>            
+                </tr>  
+                <tr>
+                    <td>content_6:</td>
+                    <td><p><?php echo strip_tags($gt->content_6); ?></p></td>
+                </tr>
+                <tr>
+                    <td>content_7:</td>
+                    <td><p><?php echo strip_tags($gt->content_7); ?></p></td>
+                </tr>
+                <tr>
+                    <td>content_8:</td>
+                    <td><p><?php echo strip_tags($gt->content_8); ?></p></td>
+                </tr>
+                <tr>
+                    <td>content_9:</td>
+                    <td><p><?php echo strip_tags($gt->content_9); ?></p></td>
+                </tr>
+                <tr>
+                    <td>content_10:</td>
+                    <td><p><?php echo strip_tags($gt->content_10); ?></p></td>
+                </tr>          
             </thead> 
         </table>            
     </div>

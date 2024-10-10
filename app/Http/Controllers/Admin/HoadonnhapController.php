@@ -10,7 +10,7 @@ class HoadonnhapController extends Controller
 {
     public function index()
     {
-        $hoadonnhap = Hoadonnhap::all();
+        $hoadonnhap = Hoadonnhap::paginate(15);
         return view('admin.hoadonnhap.index', compact('hoadonnhap'));
     }
 
@@ -39,7 +39,7 @@ class HoadonnhapController extends Controller
 
         Hoadonnhap::create($data);
 
-        return redirect()->route('admin.hoadonnhap.index')->with('success', 'Thêm thành công sản phẩm nhập!');
+        return redirect()->route('admin.hoadonnhap.index')->with('success', 'Thêm thành công hóa đơn nhập!');
     }
 
 
@@ -91,7 +91,7 @@ public function update(Request $request, $idNhap)
     $data['updated_at'] = now();
     $hoadonnhap->update($data);
 
-    return redirect()->route('admin.hoadonnhap.index')->with('success', 'Danh mục đã được cập nhật thành công.');
+    return redirect()->route('admin.hoadonnhap.index')->with('success', 'Hóa đơn nhập đã được cập nhật thành công.');
 }
 
     public function destroy($id)
@@ -99,7 +99,7 @@ public function update(Request $request, $idNhap)
         $hoadonnhap = Hoadonnhap::find($id);
         if ($hoadonnhap) {
             $hoadonnhap->delete();
-            return redirect()->route('admin.hoadonnhap.index')->with('success', 'Nhà cung cấp được xóa thành công.');
+            return redirect()->route('admin.hoadonnhap.index')->with('success', 'Hóa đơn nhập được xóa thành công.');
         } else {
             return abort(404);
         }

@@ -13,12 +13,23 @@
 
     <!-- Custom fonts for this template-->
     <link href="startbootstrap-sb-admin-2-4.1.4/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="startbootstrap-sb-admin-2-4.1.4/css/sb-admin-2.min.css" rel="stylesheet">
-   
+    <style>
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .blinking-text {
+            animation: blink 1s infinite;
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -27,8 +38,8 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-       @include('master.partials.sidebar')
-            
+        @include('master.partials.sidebar')
+
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -38,10 +49,15 @@
                 @include('master.partials.navbar')
                 <!-- End of Topbar -->
                 <div class="container-fluid">
-                @yield('tile')
-                @yield('main')
+                @if(Auth::check() && Auth::user()->role == 'employee')
+                        @yield('tile')
+                        @yield('main')
+                    @else
+                    <p class="blinking-text" style="margin-left: 300px;">Bạn không có quyền truy cập vào phần này nếu không có tài khoản admin !</p>
+                    <img style="width: 100%;height: 600px;margin-bottom: 0;" src="{{ asset('anh/bon.jpg') }}" alt="Login Icon" id="loginIcon">
+                    @endif
                 </div>
-                
+
 
 
             </div>
@@ -63,8 +79,7 @@
     </a>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

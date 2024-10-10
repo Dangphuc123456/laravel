@@ -34,7 +34,8 @@
                         <textarea class="form-control" name='content_1' id='content_1' cols="30" rows="10">
                         {!!$tt->content_1!!}
                         </textarea>
-                        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
                         <script>
                             CKEDITOR.replace( 'content_1' );
                         </script>
@@ -46,7 +47,8 @@
                         <textarea class="form-control" name='content_2' id='content_2' cols="30" rows="10">
                         {!!$tt->content_2!!}
                         </textarea>
-                        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
                         <script>
                             CKEDITOR.replace( 'content_2' );
                         </script>
@@ -58,7 +60,8 @@
                         <textarea class="form-control" name='content_3' id='content_3' cols="30" rows="10">
                         <p>{!! strip_tags($tt->content_3)!!}</p>
                         </textarea>
-                        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
                         <script>
                             CKEDITOR.replace( 'content_3' );
                         </script>
@@ -70,7 +73,8 @@
                         <textarea class="form-control" name='content_4' id='content_4' cols="30" rows="10">
                         {!! strip_tags($tt->content_4 )!!}
                         </textarea>
-                        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
                         <script>
                             CKEDITOR.replace( 'content_4' );
                         </script>
@@ -82,9 +86,62 @@
                         <textarea class="form-control" name='content_5' id='content_5' cols="30" rows="10">
                         {!! strip_tags($tt->content_5)!!}
                         </textarea>
-                        <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
                         <script>
                             CKEDITOR.replace( 'content_5' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_6</td>
+                    <td>
+                        <textarea class="form-control" name='content_6' id='content_6' cols="30" rows="10">
+                        {!! strip_tags($tt->content_6)!!}
+                        </textarea>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+                        <script>
+                            CKEDITOR.replace( 'content_6' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_7</td>
+                    <td>
+                        <textarea class="form-control" name='content_7' id='content_7' cols="30" rows="10">
+                        {!! strip_tags($tt->content_7)!!}
+                        </textarea>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+                        <script>
+                            CKEDITOR.replace( 'content_7' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_8</td>
+                    <td>
+                        <textarea class="form-control" name='content_8' id='content_8' cols="30" rows="10">
+                        {!! strip_tags($tt->content_8)!!}
+                        </textarea>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+                        <script>
+                            CKEDITOR.replace( 'content_8' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_9</td>
+                    <td>
+                        <textarea class="form-control" name='content_9' id='content_9' cols="30" rows="10">
+                        {!! strip_tags($tt->content_9)!!}
+                        </textarea>
+                       <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+                        <script>
+                            CKEDITOR.replace( 'content_9' );
                         </script>
                     </td>               
                 </tr>

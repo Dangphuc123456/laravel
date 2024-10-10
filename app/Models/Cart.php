@@ -12,6 +12,7 @@ class Cart extends Model
     protected $primaryKey = 'CartID';
     protected $fillable = [
         'CartID',
+        'OrdID',
         'CusID',
         'ProID',
         'Quantity',
@@ -32,6 +33,6 @@ class Cart extends Model
     }
     public function orderModel()
     {
-        return $this->hasMany(OrderModel::class, 'ProID', 'ProID'); // Replace 'OrderModel' with the actual model name
+        return $this->hasMany(OrderModel::class, 'ProID', 'ProID', 'OrdID', 'OrdID'); // Replace 'OrderModel' with the actual model name
     }
 }

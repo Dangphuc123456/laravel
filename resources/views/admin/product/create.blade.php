@@ -34,19 +34,6 @@
             <script>
                 CKEDITOR.replace('ProDescription');
             </script>
-
-            <div class="form-group">
-                <label style="font-size: 14px" for="exampleInputEmail1">ProColor</label>
-                <input class="form-control form-control-lg mb-3" type="text" name="ProColor">
-            </div>
-            <div class="form-group">
-                <label style="font-size: 14px" for="exampleInputEmail1">Materials</label>
-                <input class="form-control form-control-lg mb-3" type="text" name="Materials">
-            </div>
-            <div class="form-group">
-                <label style="font-size: 14px" for="exampleInputEmail1">Size</label>
-                <input class="form-control form-control-lg mb-3" type="text" name="Size">
-            </div>
             <div class="form-group">
                 <label style="font-size: 14px" for="exampleInputEmail1">ProImage</label>
                 <input class="form-control form-control-lg mb-3" type="file" name="ProImage">

@@ -19,105 +19,146 @@ use Termwind\Components\Raw;
 
 class HomeController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $sp = ProductModels::all();
         $lsp = CategoryModels::all();
         $tt = TinTucModel::all();
-        return view('User.home',compact('sp', 'lsp','tt'));
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
+        return view('User.home', compact('sp', 'lsp', 'tt', 'bestSellingProducts'));
     }
-    public function gioiThieu(){
+    public function gioiThieu()
+    {
         $gt = Gioithieu::all();
-        return view('User.gioiThieu',compact('gt'));
+        return view('User.gioiThieu', compact('gt'));
     }
 
-
+    public function lienHe()
+    {
+        return view('User.lienHe');
+    }
     public function tinTuc()
     {
         $tt = TinTucModel::all();
-        return view('User.tinTuc', compact('tt'));
+        $lsp = CategoryModels::all();
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
+        return view('User.tinTuc', compact('tt','lsp', 'bestSellingProducts'));
     }
 
-    public function sanPham(){
+    public function sanPham()
+    {
         $sp = ProductModels::all();
         $sp = ProductModels::paginate(30);
         $lsp = CategoryModels::all();
-        return view('User.sanPham',compact('sp', 'lsp'));
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
+        return view('User.sanPham', compact('sp', 'lsp', 'bestSellingProducts'));
     }
-    
-    public function detail($ProID) {
+
+    public function detail($ProID)
+    {
         // Lấy thông tin sản phẩm
         $sp = DB::table('product')->where('ProID', $ProID)->first();
         $lsp = DB::table('category')->get();
         // Lấy thông tin các sản phẩm tương tự
         $similarProducts = DB::table('product')->where('CatID', $sp->CatID)->where('ProID', '!=', $ProID)->get();
-
-        return view('User.detail', compact('sp','lsp', 'similarProducts'));
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
+        return view('User.detail', compact('sp', 'lsp', 'similarProducts','bestSellingProducts'));
     }
 
-    public function gioHang(Request $request) {
+    public function gioHang(Request $request)
+    {
+        // Lấy dữ liệu giỏ hàng từ session
         $cart = $request->session()->get('Cart');
         return view('User.gioHang', compact('cart'));
     }
 
-    
-    public function thanhToan(){
+
+    public function thanhToan()
+    {
         $sp = ProductModels::all();
         $lsp = CategoryModels::all();
-        return view('User.thanhToan',compact('sp', 'lsp'));
+        return view('User.thanhToan', compact('sp', 'lsp'));
     }
-    
-    
-    public function showThankYouPage()
-    {
-        return view('User.Camon');
-    }
+
+
+    // public function showThankYouPage()
+    // {
+    //     return view('User.Camon');
+    // }
     public function search(Request $request)
     {
-        $product = ProductModels::where('ProName','like','%'.$request->key.'%')
-                                  ->orwhere('Metatitle',$request->key)
-                                  ->get();
-        return view('User.search',compact('product'));                       
+        $key = $request->key;
+        $product = ProductModels::where('ProName', 'like', '%' . $key . '%')
+            ->orWhere('Metatitle', 'like', '%' . $key . '%');
+
+        // Nếu giá trị tìm kiếm là một số, thêm điều kiện tìm kiếm theo giá
+        if (is_numeric($key)) {
+            $product = $product->orWhere('Price', $key)
+                ->orWhere('ProID', $key);
+        }
+
+        $product = $product->get();
+        $lsp = CategoryModels::all();
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+        ->take(6)
+        ->get();
+        return view('User.search', compact('product','lsp','bestSellingProducts'));
     }
-    public function danhMuc($CatID){
-        $lsp =CategoryModels::all();
-        $loaisp = CategoryModels::where('CatID',$CatID)->first();
-        $product = ProductModels::where('CatID', $loaisp->CatID)->get();
-        return view('User.danhMuc',compact('product','lsp')); 
+
+    public function danhMuc($CatID)
+    {
+        $lsp = CategoryModels::all();
+        $loaisp = CategoryModels::where('CatID', $CatID)->first(); //Lấy thông tin danh mục hiện tại
+        $product = ProductModels::where('CatID', $loaisp->CatID)->get(); //Lấy các sản phẩm thuộc danh mục hiện tại
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
+        return view('User.danhMuc', compact('product', 'lsp', 'loaisp','bestSellingProducts'));
     }
 
     public function detailtinTuc($id)
     {
         // Tìm tin tức theo id
         $tinTuc = TinTuc::findOrFail($id);
-
+        $lsp = CategoryModels::all();
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
         // Trả về view chi tiết tin tức với dữ liệu tin tức tìm được
-        return view('User.chitiettintuc', compact('tinTuc'));
+        return view('User.chitiettintuc', compact('tinTuc', 'lsp','bestSellingProducts'));
     }
     public function showContactForm()
     {
         $sp = ProductModels::all();
         $lsp = CategoryModels::all();
         $tt = TinTucModel::all();
-        return view('User.contact',compact('sp', 'lsp','tt'));
+        return view('User.contact', compact('sp', 'lsp', 'tt'));
     }
+
     public function storeContact(Request $request)
     {
-        $emails = (array) $request->input('email');
-        $messages = (array) $request->input('message');
+        // Xác thực yêu cầu
+        $request->validate([
+            'email' => 'required|email',
+            'message' => 'required'
+        ]);
 
-        if (count($emails) !== count($messages)) {
-            // Handle error if the number of emails does not match the number of messages
-            return redirect()->back()->withErrors('Invalid data. Please make sure to fill in all fields.');
-        }
+        // Tạo một thể hiện liên hệ mới
+        $contact = new Contact();
+        $contact->email = $request->input('email');
+        $contact->message = $request->input('message');
+        $contact->save();
 
-        foreach ($emails as $index => $email) {
-            $contact = new Contact();
-            $contact->email = $email;
-            $contact->message = $messages[$index];
-            $contact->save();
-        }
 
-        return redirect()->route('contact.store');
+        return redirect()->route('contact')->with('success', 'Tin nhắn của bạn đã được gửi thành công.');
     }
 
     public function showCustomerOrders($UserName)
@@ -139,6 +180,14 @@ class HomeController extends Controller
 
         return view('orders', compact('customer', 'orders'));
     }
+    public function bestSelling()
+    {
+        // Retrieve the top 6 products with the highest sold count
+        $bestSellingProducts = ProductModels::orderBy('sold', 'desc')
+            ->take(6)
+            ->get();
 
+        // Pass the products to the view
+        return view('home', ['bestSellingProducts' => $bestSellingProducts]);
+    }
 }
-

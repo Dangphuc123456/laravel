@@ -85,6 +85,66 @@
                     </td>               
                 </tr>
                 <tr>
+                    <td>content_5</td>
+                    <td>
+                        <textarea class="form-control" name='content_6' id='content_6' cols="30" rows="10">
+                        {!! strip_tags($gt->content_6)!!}
+                        </textarea>
+                        <script src="hgtps://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                        <script>
+                            CKEDITOR.replace( 'contentcontent_6_5' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_5</td>
+                    <td>
+                        <textarea class="form-control" name='content_7' id='content_7' cols="30" rows="10">
+                        {!! strip_tags($gt->content_7)!!}
+                        </textarea>
+                        <script src="hgtps://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                        <script>
+                            CKEDITOR.replace( 'content_7' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_5</td>
+                    <td>
+                        <textarea class="form-control" name='content_8' id='content_8' cols="30" rows="10">
+                        {!! strip_tags($gt->content_8)!!}
+                        </textarea>
+                        <script src="hgtps://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                        <script>
+                            CKEDITOR.replace( 'content_8' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_5</td>
+                    <td>
+                        <textarea class="form-control" name='content_9' id='content_9' cols="30" rows="10">
+                        {!! strip_tags($gt->content_9)!!}
+                        </textarea>
+                        <script src="hgtps://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                        <script>
+                            CKEDITOR.replace( 'content_9' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
+                    <td>content_5</td>
+                    <td>
+                        <textarea class="form-control" name='content_10' id='content_10' cols="30" rows="10">
+                        {!! strip_tags($gt->content_10)!!}
+                        </textarea>
+                        <script src="hgtps://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+                        <script>
+                            CKEDITOR.replace( 'content_10' );
+                        </script>
+                    </td>               
+                </tr>
+                <tr>
                     <td>image</td>
                     <td><input type='file' name='image' id='image' value='{{$gt->image}}'></td>                  
                 </tr>

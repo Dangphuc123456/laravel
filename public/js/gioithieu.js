@@ -1,51 +1,50 @@
-const slides = document.querySelectorAll('.slide');
-let currentSlide = 0;
+let slideIndex = 0;
+showSlides();
 
-function showSlide(index) {
-slides.forEach((slide) => {
-    slide.classList.remove('active');
-});
-slides[index].classList.add('active');
+function showSlides() {
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1 }
+
+    for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+
+    setTimeout(showSlides, 3000); // Change image every 3 seconds
 }
-
-function nextSlide() {
-currentSlide++;
-if (currentSlide === slides.length) {
-    currentSlide = 0;
-}
-showSlide(currentSlide);
-}
-
-setInterval(nextSlide, 2000); // Thay đổi slide sau mỗi 2 giây
-
-// Hiển thị slide đầu tiên khi tải trang
-showSlide(currentSlide);
-
 
 //đăng xuất
-        /// Lắng nghe sự kiện click vào ảnh đăng nhập
-        document.getElementById("loginIcon").addEventListener("click", function() {
-            // Lấy phần tử dropdown-menu
-            var dropdownMenu = document.getElementById("dropdownMenu");
-  
-            // Kiểm tra nếu dropdown-menu đã hiển thị thì ẩn đi, ngược lại thì hiển thị
-            if (dropdownMenu.classList.contains("show")) {
-                dropdownMenu.classList.remove("show");
-            } else {
-                dropdownMenu.classList.add("show");
-            }
-          });
-  
-          // Lắng nghe sự kiện click nơi khác trên trang để ẩn dropdown-menu
-          document.addEventListener("click", function(event) {
-            var dropdownMenu = document.getElementById("dropdownMenu");
-            if (!event.target.matches("#loginIcon")) {
-                dropdownMenu.classList.remove("show");
-            }
-          });
-        //   thông báo
-        function closeAlert() {
-            var alertBox = document.getElementById('alertBox');
-            alertBox.style.display = 'none';
-        }
-        
+/// Lắng nghe sự kiện click vào ảnh đăng nhập
+document.getElementById("loginIcon").addEventListener("click", function () {
+    // Lấy phần tử dropdown-menu
+    var dropdownMenu = document.getElementById("dropdownMenu");
+
+    // Kiểm tra nếu dropdown-menu đã hiển thị thì ẩn đi, ngược lại thì hiển thị
+    if (dropdownMenu.classList.contains("show")) {
+        dropdownMenu.classList.remove("show");
+    } else {
+        dropdownMenu.classList.add("show");
+    }
+});
+
+// Lắng nghe sự kiện click nơi khác trên trang để ẩn dropdown-menu
+document.addEventListener("click", function (event) {
+    var dropdownMenu = document.getElementById("dropdownMenu");
+    if (!event.target.matches("#loginIcon")) {
+        dropdownMenu.classList.remove("show");
+    }
+});
+//   thông báo
+function closeAlert() {
+    var alertBox = document.getElementById('alertBox');
+    alertBox.style.display = 'none';
+}

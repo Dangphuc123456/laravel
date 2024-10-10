@@ -2,19 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Model
+class Customer extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'customer'; // tên bảng
-    protected $primaryKey = 'CusID';    // khóa chính
-    // Các cột trong bảng
-    protected $fillable = ['CusName', 'CusEmail', 'CusAddress', 'CusPhone', 'Note', 'Payment'];
-    public function order()
-    {
-        return $this->hasMany(OrderModel::class, 'CusID', 'CusID');
-    }
-    
+
+    // Đặt tên bảng đúng
+    protected $table = 'customer';  
+
+    protected $fillable = [
+        'UserName', 'CusEmail', 'password', 'CusPhone'
+    ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    protected $primaryKey = 'CusID';
 }
+
+

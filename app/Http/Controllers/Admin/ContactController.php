@@ -11,7 +11,7 @@ class ContactController extends Controller
     public function index()
     {
         $contact = Contact::all();
-        return view('admin.contact.index',compact('contact'));
+        return view('admin.contact.index', compact('contact'));
     }
 
     public function show(string $id)
@@ -22,11 +22,11 @@ class ContactController extends Controller
             // Xử lý khi không tìm thấy sản phẩm với ProID tương ứng
             return abort(404); // Trả về trang lỗi 404
         }
-        $id=$contact->id;
-        $email=$contact->email;
-        $message=$contact->message;
-        $created_at=$contact->created_at;
-        $updated_at =$contact->updated_at;
+        $id = $contact->id;
+        $email = $contact->email;
+        $message = $contact->message;
+        $created_at = $contact->created_at;
+        $updated_at = $contact->updated_at;
 
         return view('admin.contact.detail', compact('contact', 'id', 'email', 'message', 'created_at', 'updated_at'));
     }
@@ -37,5 +37,16 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         $contact->delete();
         return redirect()->route('admin.contact.index')->with('success', 'Xóa danh mục thành công!');
+    }
+
+    public function newcontact()
+    {
+        // Lấy danh sách tin nhắn mới nhất
+        $messages = Contact::orderByDesc('created_at')
+            ->take(5) // Lấy 5 tin nhắn mới nhất
+            ->get();
+
+        // Trả về view và truyền dữ liệu sang view
+        return view('admin.contact.newcontact', compact('messages'));
     }
 }

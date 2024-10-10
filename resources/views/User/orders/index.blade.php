@@ -1,60 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Danh sách đơn hàng</title>
-    <link rel="stylesheet" href="{{ asset('css/Detail.css') }}">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('css/Confirmed.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
-   @include('User.partials.header')
-   @include('User.partials.menu')
-   @include('User.partials.slide')
+    <marquee direction="left" style="background:orange;border: 1px solid transparent;box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);">
+        Chào mừng khách hàng đến với Bếp Nhà Bon - Hân hạnh khi được chăm sóc phục vụ quý khách
+    </marquee>
+    @include('User.partials.header')
+    @include('User.partials.menu')
+    @include('User.partials.slide')
 
-    <h1>Lịch sử mua</h1>
-    <h2>Khách hàng: {{ $customer->CusName }}</h2>
-
-    @if ($carts->isEmpty())
-        <p>Bạn chưa có đơn hàng nào.</p>
-    @else
-        <table>
+    <h1 style="text-align:center">Lịch sử mua</h1>
+    <h3 style="text-align:center">Khách hàng: {{ auth()->user()->username }}</h3>
+    <div class="Confirmed">
+        <table class="table">
             <thead>
                 <tr>
-                    <th scope="col">Tên sản phẩm </th>
-                    <th scope="col">Mã sản phẩm </th>
-                    <th scope="col">Số lượng</th>
-                    <th scope="col">Giá</th>
+                    <th>STT</th>
+                    <th>Mã đơn hàng</th>
+                    <th>Tên khách hàng</th>
+                    <th>Ngày đặt hàng</th>
+                    <th>Tình trạng</th>
+                    <th>Tổng tiền </th>
+                    <th>Chi tiết đơn</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($carts as $cart)
-                    <tr>
-                        <td>{{ $cart->ProName }}</td>
-                        <td> {{ $cart->ProID }}</td>
-                        <td>{{ $cart->Quantity }}</td>
-                        <td>{{ number_format($cart->Price) }} VND</td>
-                    </tr>
+                @foreach ($orders as $order)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $order->OrdID }}</td>
+                    <td>{{ $order->Name }}</td>
+                    <td>{{ $order->OrderDate }}</td>
+                    <td>{{ $order->Status }}</td>
+                    <td>{{ number_format($order->MoneyTotal, 0, ',', '.') }}VND</td>
+                    <td> <a style="text-decoration:none;" href="{{ route('order.detail', ['ordID' => $order->OrdID]) }}" class="btn btn-primary">
+                            Chi tiết đơn hàng
+                        </a></td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
-    @endif
+    </div>
+
     @include('User.partials.footer')
-    @include('User.partials.scroll') 
-    <script src="{{ asset('js/Detail.js') }}"></script>  
-    
+    @include('User.partials.scroll')
+    <script src="{{ asset('js/Detail.js') }}"></script>
 </body>
+
 </html>

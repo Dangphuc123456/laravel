@@ -2,26 +2,23 @@
 
 namespace App\Models;
 
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Employee extends Authenticatable
 {
     use HasFactory;
-    protected $table = 'employee'; // tên bảng
-    protected $primaryKey = 'EmpID';    // khóa chính
-    // Các cột trong bảng
+    protected $table = 'employee';  
     protected $fillable = [
-    'EmpName',
-    'EmpAddress',
-    'EmpPhone',
-    'EmpEmail',
-    'EmpPosition',
-    'EmpSalary',
-    'EmpStartDate',
-    'EmpEndDate',
-    'EmpImage',
-    'created_at',
-    'updated_at'
+        'username', 'EmpEmail', 'password', 'EmpPhone', 'EmpPosition', 'EmpSalary', 'EmpStartDate', 'EmpEndDate', 'EmpImage'
     ];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    // Nếu có cần phải chỉ định khóa chính không phải là `id`
+    protected $primaryKey = 'EmpID';
 }
+
+
